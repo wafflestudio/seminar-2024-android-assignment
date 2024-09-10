@@ -4,7 +4,8 @@
 
 ## 1. 설치 스크린샷
 
-깃허브 에디터에 스크린샷 이미지를 드래그 드롭 하면 이미지를 첨부할 수 있습니다. 여기에 넣어 주세요!
+<img width="1512" alt="image" src="https://github.com/user-attachments/assets/cc5485e1-865d-4fc2-b7b9-6d6d78479e97">
+
 
 ## 2. 코테 코드 핵심 로직 Kotlin으로 쓰기
 
@@ -13,7 +14,58 @@
 ### 전
 
 ```
+n, m, query = map(int, input().split())
 
+butter = False
+bx = -1
+by = -1
+
+waffle = [["" for i in range(m)] for j in range(n)]
+
+def putTopping(x, y, char):
+  if(butter and bx == x and by == y):
+    return
+#   print(butter, bx, by)
+  waffle[x][y] = "".join([waffle[x][y], char])
+
+def printWaffle():
+  for i in range(n):
+    for j in range(m):
+      if(waffle[i][j] == ""): print("0", end = ' ')
+      else: print(waffle[i][j], end = ' ')
+    print()
+
+for _ in range(query):
+  t, i, j = map(int, input().split())
+  if(t == 1):
+    if(i == 1): 
+      for row in range(n):
+        if((j-2) - row >= 0 and j-row-2 < m):
+          putTopping(row, j-row-2, 'S')
+    else:
+      for row in range(n):
+        if(row-j >= 0 and row-j < m):
+          putTopping(row, row-j, 'S')
+    butter = False
+
+  elif(t == 2):
+    if(i == 1):
+      for col in range(m):
+        putTopping(j-1, col, 'C')
+    else: 
+      for row in range(n):
+        putTopping(row, j-1, 'C')
+    butter = False
+
+  else: 
+    if(butter and bx == i-1 and by == j-1): 
+      butter = False
+      continue
+    putTopping(i-1, j-1, 'B')
+    butter = True
+    bx, by = i-1, j-1
+
+printWaffle()
 ```
 
 ### 후
