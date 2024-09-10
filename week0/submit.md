@@ -5,6 +5,7 @@
 ## 1. 설치 스크린샷
 
 깃허브 에디터에 스크린샷 이미지를 드래그 드롭 하면 이미지를 첨부할 수 있습니다. 여기에 넣어 주세요!
+<img width="1440" alt="hello_world" src="https://github.com/user-attachments/assets/1c138828-4296-4e31-b5b9-b3e0717d4be2">
 
 
 
