@@ -4,10 +4,12 @@
 
 ## 1. 설치 스크린샷
 
-![alt text](<스크린샷 2024-09-11 133656.png>)
-![alt text](<스크린샷 2024-09-11 133916.png>)
-![alt text](<스크린샷 2024-09-11 140506.png>)
-![alt text](<스크린샷 2024-09-11 140656.png>)
+![스크린샷 2024-09-11 133656](https://github.com/user-attachments/assets/6af9dd9e-9251-4425-bb6f-365bb74bd6c1)
+![스크린샷 2024-09-11 133916](https://github.com/user-attachments/assets/c80e7daa-a500-4dd6-ba25-d434d1a7963b)
+![스크린샷 2024-09-11 140506](https://github.com/user-attachments/assets/b6b5c28f-d9c8-4648-a978-823634dda051)
+![스크린샷 2024-09-11 140656](https://github.com/user-attachments/assets/cbfcf9ac-8477-46cb-adac-8c8e2793c0d8)
+
+
 
 ## 2. 코테 코드 핵심 로직 Kotlin으로 쓰기
 
