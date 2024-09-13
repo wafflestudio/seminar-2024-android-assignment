@@ -1,6 +1,5 @@
 # 과제 제출
 
-`seminar-2024-andoid-assignment` 레포를 clone한 후, 이 파일의 아래 부분을 수정해서 PR로 올려 주세요.
 
 ## 1. 설치 스크린샷
 ![캡처](https://github.com/user-attachments/assets/7682ef72-8606-400c-b8bf-f99ac589846c)
@@ -12,7 +11,7 @@
 
 ### 전
 
-```
+```C
 #include<stdio.h>
 int N,M,K;
 int ni[3],mi[3],ki[3];
