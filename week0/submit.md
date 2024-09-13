@@ -2,9 +2,12 @@
 
 `seminar-2024-andoid-assignment` 레포를 clone한 후, 이 파일의 아래 부분을 수정해서 PR로 올려 주세요.
 
+![KakaoTalk_20240912_121405036](https://github.com/user-attachments/assets/b42a49d2-6262-40d2-81a1-8b41f923e62c)
+![KakaoTalk_20240912_121405036](https://github.com/user-attachments/assets/b42a49d2-6262-40d2-81a1-8b41f923e62c)
 ## 1. 설치 스크린샷
 
 깃허브 에디터에 스크린샷 이미지를 드래그 드롭 하면 이미지를 첨부할 수 있습니다. 여기에 넣어 주세요!
+
 
 ## 2. 코테 코드 핵심 로직 Kotlin으로 쓰기
 
