@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WaffleSeminar2024</string>
+    <string name="workspaceLabelContent">내 Slack 워크스페이스 URL</string>
 </resources>
