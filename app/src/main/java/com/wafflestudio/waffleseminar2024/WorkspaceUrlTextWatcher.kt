@@ -2,9 +2,10 @@ package com.wafflestudio.waffleseminar2024
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Button
 import android.widget.EditText
 
-class WorkspaceUrlTextWatcher(private val editText: EditText):TextWatcher {
+class WorkspaceUrlTextWatcher(private val editText: EditText, private val submitButton: Button):TextWatcher {
     private var cursorPosition: Int = 0
     private var isUserTyping: Boolean = false
 
@@ -31,5 +32,6 @@ class WorkspaceUrlTextWatcher(private val editText: EditText):TextWatcher {
                 editText.addTextChangedListener(this)
                 }
         }
+        submitButton.isEnabled = s?.isNotEmpty() == true
     }
 }

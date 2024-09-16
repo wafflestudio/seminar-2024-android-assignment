@@ -1,7 +1,9 @@
 package com.wafflestudio.waffleseminar2024
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextWatcher
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
         addToolbarOption()
         addWorkspaceUrlEditTextOption()
+        addContinueButtonOption()
     }
 
     private fun addToolbarOption() {
@@ -36,7 +39,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun addWorkspaceUrlEditTextOption() {
         val editText: EditText = findViewById(R.id.workspaceUrl)
+        val button: Button = findViewById(R.id.buttonContinue)
         editText.hint = "workspace-url.slack.com"
-        editText.addTextChangedListener(WorkspaceUrlTextWatcher(editText))
+        editText.addTextChangedListener(WorkspaceUrlTextWatcher(editText, button))
+    }
+
+    private fun addContinueButtonOption() {
+        val button: Button = findViewById(R.id.buttonContinue)
+
+        button.setOnClickListener {
+            val intent = Intent(this, UserInformationActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }
