@@ -14,68 +14,94 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
+        app:title="로그인"
+        app:titleTextColor="@color/black"
+        app:titleTextAppearance="@style/ToolBarTitleText"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <View
         android:layout_width="match_parent"
         android:layout_height='1dp'
-        android:background="#D3D3D3"
+        android:background="#FFD3D3D3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <ImageView
-        android:id="@+id/workspaceMainImage"
-        android:layout_width="316dp"
-        android:layout_height="275dp"
-        android:layout_marginTop="58dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loginForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toTopOf="@id/workspaceUrlLabel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/slack_img"
-        tools:layout_editor_absoluteX="62dp" />
+        >
+        <ImageView
+            android:id="@+id/workspaceMainImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true"
+            android:src="@drawable/slack_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/workspaceUrlLabel"
+            />
+        <TextView
+            android:id="@+id/workspaceUrlLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내 Slack 워크스페이스 URL"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintTop_toBottomOf="@id/workspaceMainImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
-    <TextView
-        android:id="@+id/workspaceUrlLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="368dp"
-        android:text="@string/workspaceLabelContent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="191dp" />
+        <EditText
+            android:id="@+id/workspaceUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:inputType="textUri"
+            android:padding="12dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:textColorHint="#616161"
+            android:background="@drawable/workspace_url_input_style"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workspaceUrlLabel"
 
-    <EditText
-        android:id="@+id/workspaceUrl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="workspace-url.slack.com"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="411dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workspaceUrlLabel"
+            />
 
-        />
+        <Button
+            android:id="@+id/buttonContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="계속"
 
-    <Button
-        android:id="@+id/buttonContinue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="계속"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="472dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workspaceUrl"
-        />
+            android:background="@drawable/continue_button_style"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workspaceUrl"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

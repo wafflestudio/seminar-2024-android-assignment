@@ -1,9 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.WaffleSeminar2024" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.WaffleSeminar2024" parent="Theme.AppCompat.Light.NoActionBar">
+<!--        <item name="windowActionBar">true</item>-->
+<!--        <item name="windowNoTitle">false</item>-->
+    </style>
+    <style name="Theme.WaffleSeminar2024" parent="Base.Theme.WaffleSeminar2024">
+<!--        <item name="android:actionBarStyle">@style/MyActionBar</item>-->
     </style>
 
-    <style name="Theme.WaffleSeminar2024" parent="Base.Theme.WaffleSeminar2024" />
+<!--    <style name="MyActionBar" parent="Widget.AppCompat.ActionBar.Solid">-->
+<!--        <item name="background">@android:color/white</item>-->
+<!--        <item name="titleTextStyle">@style/MyActionBarTitleText</item>-->
+<!--    </style>-->
+    <style name="ToolBarTitleText" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="MyActionBarTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
