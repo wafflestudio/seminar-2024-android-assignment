@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addToolbarOption() {
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbarMain)
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -45,10 +45,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addContinueButtonOption() {
+        val editText: EditText = findViewById(R.id.workspaceUrl)
         val button: Button = findViewById(R.id.buttonContinue)
 
         button.setOnClickListener {
+            val workspaceUrl = editText.text.toString()
             val intent = Intent(this, UserInformationActivity::class.java)
+            intent.putExtra("WORKSPACE_URL", workspaceUrl)
             startActivity(intent)
         }
 
