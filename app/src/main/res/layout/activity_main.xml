@@ -8,12 +8,90 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/myHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="&lt;     로그인"
+        android:textSize="18sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/myText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내 Slack 워크 스페이스 URL"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/myImageView"
+        app:layout_constraintStart_toStartOf="@id/myImageView" />
+
+    <TextView
+        android:id="@+id/myButton"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:text="계속"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:background="#CCCCCC"
+        app:layout_constraintTop_toBottomOf="@id/urlEditText"
+        app:layout_constraintBottom_toTopOf="@id/myLine2"
+        app:layout_constraintStart_toStartOf="@id/myImageView"
+        app:layout_constraintEnd_toEndOf="@id/myImageView"
+        />
+
+    <ImageView
+        android:id="@+id/myImageView"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/slack_icon"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintTop_toBottomOf="@id/myLine1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/myLine1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/myHeader"
+        app:layout_constraintBottom_toTopOf="@id/myImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <View
+        android:id="@+id/myLine2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+
+    <EditText
+        android:id="@+id/urlEditText"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:hint="workspace-url.slack.com"
+        android:textSize="18sp"
+        android:background="#CCCCCC"
+        app:layout_constraintBottom_toTopOf="@id/myButton"
+        app:layout_constraintTop_toBottomOf="@id/myText"
+        app:layout_constraintStart_toStartOf="@id/myImageView"
+        app:layout_constraintEnd_toEndOf="@id/myImageView"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
