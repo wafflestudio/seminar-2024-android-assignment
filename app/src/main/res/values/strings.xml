@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">WaffleSeminar2024</string>
+    <string name="LoginText">로그인</string>
+    <string name="ProfileText">프로필</string>
+    <string name="SlackImageDescription">Image of Slack Icon</string>
+    <string name="AskSlackWorkspaceURL">내 슬랙 워크스페이스 URL</string>
+    <string name="SlackWorkspaceURLHint">workspace-url.slack.com</string>
+    <string name="ContinueText">계속</string>
+    <string name="BackText">Back Button</string>
+    <string name="NameText">정해찬</string>
+    <string name="WaffleYearText">22.5 / Android</string>
+    <string name="OnlineAndAlertText">온라인, 알림 스누즈됨</string>
+    <string name="TimeText">오전 1:37, 현지 시간</string>
+    <string name="EditState">상태 편집</string>
+    <string name="EditProfile">프로필 편집</string>
 </resources>
