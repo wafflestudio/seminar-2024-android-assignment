@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/button_border.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 내부 색상을 흰색으로 설정 -->
+    <solid android:color="#FFFFFF" />
+
+    <!-- 테두리 설정 -->
+    <stroke
+        android:width="2dp"
+    android:color="#000000" />
+
+    <!-- 모서리 둥글게 하고 싶으면 추가 -->
+    <corners android:radius="4dp" />
+</shape>
