@@ -1,19 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+package com.example.firstapp
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+import android.content.Intent
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import androidx.appcompat.app.AppCompatActivity
+import com.example.firstapp.databinding.ActivityMainBinding
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.submitButton.isEnabled = false
+
+        // EditText에 TextWatcher 추가
+        binding.inputField.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                binding.submitButton.isEnabled = !s.isNullOrEmpty()
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+        binding.submitButton.setOnClickListener{
+            val inputText = binding.inputField.text.toString()
+
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("USER_INPUT", inputText)
+            startActivity(intent)
+        }
+    }
+}
