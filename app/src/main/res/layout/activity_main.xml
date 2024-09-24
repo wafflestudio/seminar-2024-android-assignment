@@ -5,15 +5,144 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".MainActivity">
 
+    <!-- 상단 이미지 배치 -->
+    <ImageView
+        android:id="@+id/header_image"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:src="@drawable/cover"
+        android:scaleType="centerCrop"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:background="@drawable/round_corner_image"
+        android:clipToOutline="true"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- 설명 텍스트 -->
     <TextView
+        android:id="@+id/description_text"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+
+        android:text="My Slack workspace URL"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_image" />
+
+    <!-- URL 입력 필드 -->
+    <EditText
+        android:id="@+id/workspace_url"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:hint="workspace-url.slack.com"
+        android:backgroundTint="#e5e5e5"
+        android:background="#e5e5e5"
+
+        app:layout_constraintTop_toBottomOf="@id/description_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:paddingStart="16dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Continue button -->
+    <Button
+        android:id="@+id/continue_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+
+        android:background="@drawable/round_corner_button"
+
+        app:layout_constraintTop_toBottomOf="@id/workspace_url"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
+
+    <!-- 하단의 추가 옵션들 -->
+    <TextView
+        android:id="@+id/workspace_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Don't you Know workspace?"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+
+        app:layout_constraintTop_toBottomOf="@id/continue_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="32dp"/>
+
+    <LinearLayout
+        android:id="@+id/additional_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/workspace_hint"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <!-- 워크스페이스 찾기 옵션 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="워크스페이스 찾기"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+        <!-- GovSlack에 로그인 옵션 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GovSlack에 로그인"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
