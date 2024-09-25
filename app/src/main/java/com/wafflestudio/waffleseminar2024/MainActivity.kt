@@ -31,7 +31,10 @@ class MainActivity : AppCompatActivity() {
 
         val buttonGotoSecond = binding.button
         buttonGotoSecond.setOnClickListener {
-            val intent = Intent(this, second_activity::class.java)
+            val passed_url = binding.urlInput.text.toString()
+            val intent = Intent(this, second_activity::class.java).apply{
+                putExtra("slackurl", passed_url)
+            }
             startActivity(intent)
         }
         }

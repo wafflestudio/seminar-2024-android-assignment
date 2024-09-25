@@ -5,17 +5,32 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".second_activity">
+    tools:context=".second_activity"
+    tools:ignore="ExtraText">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-
         android:layout_marginTop="48dp"
         android:gravity="center"
-        android:text="   &lt;    프로필"
+        android:text="   &lt;      프로필"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/main_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="52dp"
+        android:gravity="center"
+        android:text="URL will be displayed here"
         android:textColor="@android:color/black"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -25,23 +40,248 @@
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp" />git
 
     <ImageView
         android:id="@+id/profile"
-        android:layout_width="500dp"
-        android:layout_height="220dp"
+        android:layout_width="700dp"
+        android:layout_height="420dp"
         android:layout_marginTop="64dp"
-        android:rotation="90"
         android:scaleType="centerInside"
         android:src="@drawable/profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="26dp"
+        android:text="이상우"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile" />
+
+    <TextView
+        android:id="@+id/introduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="5dp"
+        android:text="22.5 / Android"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+    <Button
+        android:id="@+id/status_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="상태 편집"
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/black"
+        android:enabled="false"
+        app:layout_constraintTop_toBottomOf="@id/introduce"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop = "30dp"/>
+    <Button
+        android:id="@+id/profile_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="프로필 편집"
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/black"
+        android:enabled="false"
+        app:layout_constraintTop_toBottomOf="@id/status_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop = "10dp"/>
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/profile_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+    <TextView
+        android:id="@+id/information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="5dp"
+        android:text="연락처 정보"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="편집"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="3dp"
+        android:background="@android:color/transparent"
+    />
+
+    <ImageView
+        android:id="@+id/phone_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_call"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/information" />
+    <ImageView
+        android:id="@+id/message_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_send"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_image" />
+
+    <TextView
+        android:id="@+id/phone_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="8dp"
+        android:text="010-2881-8347"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/information" />
+    <TextView
+        android:id="@+id/email_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="14dp"
+        android:text="dltkddn233@snu.ac.kr"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phone_text" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/information"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="80dp" />
+    <TextView
+        android:id="@+id/selfPR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="5dp"
+        android:text="내 소개"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view3" />
+
+    <TextView
+        android:id="@+id/generation_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기수"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selfPR"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/generation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22.5기"
+        android:textSize="13sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/generation_title"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="3dp"
+        />
+    <TextView
+        android:id="@+id/position_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="position"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/generation"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Developer"
+        android:textSize="13sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/position_title"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="3dp"
+        />
+    <TextView
+        android:id="@+id/github_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Github"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/position"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="wowsnu"
+        android:textSize="13sp"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/github_title"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="3dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
