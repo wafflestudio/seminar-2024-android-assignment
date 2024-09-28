@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/copyDisplayName"
+        android:icon="@drawable/content_copy"
+        android:title="표시 이름 복사"
+        />
+    <item
+        android:id="@+id/viewFile"
+        android:icon="@drawable/view_file"
+        android:title="파일 보기"
+        />
+
+</menu>
