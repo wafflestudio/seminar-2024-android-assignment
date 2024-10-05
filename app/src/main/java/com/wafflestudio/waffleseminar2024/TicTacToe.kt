@@ -185,28 +185,28 @@ class TicTacToe : AppCompatActivity() {
         btn1.setOnClickListener { handleButtonClick(btn1, turn, 0, 0) }
         btn2.setOnClickListener { handleButtonClick(btn2, turn, 0, 1) }
         btn3.setOnClickListener { handleButtonClick(btn3, turn, 0, 2) }
-        btn4.setOnClickListener { handleButtonClick(btn4, turn, 1, 0) }
-        btn5.setOnClickListener { handleButtonClick(btn5, turn, 1, 1) }
-        btn6.setOnClickListener { handleButtonClick(btn6, turn, 1, 2) }
-        btn7.setOnClickListener { handleButtonClick(btn7, turn, 2, 0) }
-        btn8.setOnClickListener { handleButtonClick(btn8, turn, 2, 1) }
-        btn9.setOnClickListener { handleButtonClick(btn9, turn, 2, 2) }
-        btn10.setOnClickListener{ handleButtonClick(btn10, turn, 0, 1) }
-        btn11.setOnClickListener { handleButtonClick(btn11, turn, 0, 0) }
-        btn12.setOnClickListener { handleButtonClick(btn12, turn, 0, 1) }
-        btn13.setOnClickListener { handleButtonClick(btn13, turn, 0, 2) }
-        btn14.setOnClickListener { handleButtonClick(btn14, turn, 1, 0) }
-        btn15.setOnClickListener { handleButtonClick(btn15, turn, 1, 1) }
-        btn16.setOnClickListener { handleButtonClick(btn16, turn, 1, 2) }
-        btn17.setOnClickListener { handleButtonClick(btn17, turn, 2, 0) }
-        btn18.setOnClickListener { handleButtonClick(btn18, turn, 2, 1) }
-        btn19.setOnClickListener { handleButtonClick(btn19, turn, 2, 2) }
-        btn20.setOnClickListener{ handleButtonClick(btn20, turn, 0, 1) }
-        btn21.setOnClickListener { handleButtonClick(btn21, turn, 0, 0) }
-        btn22.setOnClickListener { handleButtonClick(btn22, turn, 0, 1) }
-        btn23.setOnClickListener { handleButtonClick(btn23, turn, 0, 2) }
-        btn24.setOnClickListener { handleButtonClick(btn24, turn, 1, 0) }
-        btn25.setOnClickListener { handleButtonClick(btn25, turn, 1, 1) }
+        btn4.setOnClickListener { handleButtonClick(btn4, turn, 0, 3) }
+        btn5.setOnClickListener { handleButtonClick(btn5, turn, 0, 4) }
+        btn6.setOnClickListener { handleButtonClick(btn6, turn, 1, 0) }
+        btn7.setOnClickListener { handleButtonClick(btn7, turn, 1, 1) }
+        btn8.setOnClickListener { handleButtonClick(btn8, turn, 1, 2) }
+        btn9.setOnClickListener { handleButtonClick(btn9, turn, 1, 3) }
+        btn10.setOnClickListener{ handleButtonClick(btn10, turn, 1, 4) }
+        btn11.setOnClickListener { handleButtonClick(btn11, turn, 2, 0) }
+        btn12.setOnClickListener { handleButtonClick(btn12, turn, 2, 1) }
+        btn13.setOnClickListener { handleButtonClick(btn13, turn, 2, 2) }
+        btn14.setOnClickListener { handleButtonClick(btn14, turn, 2, 3) }
+        btn15.setOnClickListener { handleButtonClick(btn15, turn, 2, 4) }
+        btn16.setOnClickListener { handleButtonClick(btn16, turn, 3, 0) }
+        btn17.setOnClickListener { handleButtonClick(btn17, turn, 3, 1) }
+        btn18.setOnClickListener { handleButtonClick(btn18, turn, 3, 2) }
+        btn19.setOnClickListener { handleButtonClick(btn19, turn, 3, 3) }
+        btn20.setOnClickListener{ handleButtonClick(btn20, turn, 3, 4) }
+        btn21.setOnClickListener { handleButtonClick(btn21, turn, 4, 0) }
+        btn22.setOnClickListener { handleButtonClick(btn22, turn, 4, 1) }
+        btn23.setOnClickListener { handleButtonClick(btn23, turn, 4, 2) }
+        btn24.setOnClickListener { handleButtonClick(btn24, turn, 4, 3) }
+        btn25.setOnClickListener { handleButtonClick(btn25, turn, 4, 4) }
 
 
 
