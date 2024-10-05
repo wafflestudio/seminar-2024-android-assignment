@@ -47,6 +47,23 @@ class TicTacToe : AppCompatActivity() {
         val btn7 = findViewById<TextView>(R.id.btn7)
         val btn8 = findViewById<TextView>(R.id.btn8)
         val btn9 = findViewById<TextView>(R.id.btn9)
+        val btn10 = findViewById<TextView>(R.id.btn10)
+        val btn11 = findViewById<TextView>(R.id.btn11)
+        val btn12 = findViewById<TextView>(R.id.btn12)
+        val btn13 = findViewById<TextView>(R.id.btn13)
+        val btn14 = findViewById<TextView>(R.id.btn14)
+        val btn15 = findViewById<TextView>(R.id.btn15)
+        val btn16 = findViewById<TextView>(R.id.btn16)
+        val btn17 = findViewById<TextView>(R.id.btn17)
+        val btn18 = findViewById<TextView>(R.id.btn18)
+        val btn19 = findViewById<TextView>(R.id.btn19)
+        val btn20 = findViewById<TextView>(R.id.btn20)
+        val btn21 = findViewById<TextView>(R.id.btn21)
+        val btn22 = findViewById<TextView>(R.id.btn22)
+        val btn23 = findViewById<TextView>(R.id.btn23)
+        val btn24 = findViewById<TextView>(R.id.btn24)
+        val btn25 = findViewById<TextView>(R.id.btn25)
+
 
         val reset = findViewById<TextView>(R.id.reset)
 
@@ -55,9 +72,11 @@ class TicTacToe : AppCompatActivity() {
         var isGameover = true
 
         val btnArray = arrayOf(
-            arrayOf(btn1,btn2,btn3),
-            arrayOf(btn4,btn5,btn6),
-            arrayOf(btn7,btn8,btn9))
+            arrayOf(btn1,btn2,btn3,btn4,btn5),
+            arrayOf(btn6,btn7,btn8,btn9,btn10),
+            arrayOf(btn11,btn12,btn13,btn14,btn15),
+            arrayOf(btn16,btn17,btn18,btn19,btn20),
+            arrayOf(btn21,btn22,btn23,btn24,btn25))
 
 
         // DrawerLayout 참조
@@ -84,18 +103,22 @@ class TicTacToe : AppCompatActivity() {
 
         fun checkWin(): String? {
 
-            for (i in 0..2) {
+            for (i in 0..4) {
                 if (btnArray[i][0].text == btnArray[i][1].text
                     && btnArray[i][1].text == btnArray[i][2].text
+                    && btnArray[i][2].text == btnArray[i][3].text
+                    && btnArray[i][3].text == btnArray[i][4].text
                     && btnArray[i][0].text != ""
                 ) {
                     return btnArray[i][0].text.toString()
                 }
             }
 
-            for (i in 0..2) {
+            for (i in 0..4) {
                 if (btnArray[0][i].text == btnArray[1][i].text
                     && btnArray[1][i].text == btnArray[2][i].text
+                    && btnArray[2][i].text == btnArray[3][i].text
+                    && btnArray[3][i].text == btnArray[4][i].text
                     && btnArray[0][i].text != ""
                 ) {
                     return btnArray[0][i].text.toString()
@@ -104,19 +127,23 @@ class TicTacToe : AppCompatActivity() {
 
             if(btnArray[0][0].text == btnArray[1][1].text
                 && btnArray[1][1].text == btnArray[2][2].text
+                && btnArray[2][2].text == btnArray[3][3].text
+                && btnArray[3][3].text == btnArray[4][4].text
                 && btnArray[0][0].text != ""){
                 return btnArray[0][0].text.toString()
             }
 
-            if(btnArray[0][2].text == btnArray[1][1].text
-                && btnArray[1][1].text == btnArray[2][0].text
-                && btnArray[0][2].text != ""){
-                return btnArray[0][2].text.toString()
+            if(btnArray[0][4].text == btnArray[1][3].text
+                && btnArray[1][3].text == btnArray[2][2].text
+                && btnArray[2][2].text == btnArray[3][1].text
+                && btnArray[3][1].text == btnArray[4][0].text
+                && btnArray[0][4].text != ""){
+                return btnArray[0][4].text.toString()
             }
             return null
         }
 
-        val board = Array(3) { Array(3) { "" } }
+        val board = Array(5) { Array(5) { "" } }
 
         fun handleButtonClick(btn: TextView, turn: TextView, row: Int, col: Int) {
             if (btn.text.isEmpty() && isGameover) {
@@ -164,12 +191,28 @@ class TicTacToe : AppCompatActivity() {
         btn7.setOnClickListener { handleButtonClick(btn7, turn, 2, 0) }
         btn8.setOnClickListener { handleButtonClick(btn8, turn, 2, 1) }
         btn9.setOnClickListener { handleButtonClick(btn9, turn, 2, 2) }
+        btn10.setOnClickListener{ handleButtonClick(btn10, turn, 0, 1) }
+        btn11.setOnClickListener { handleButtonClick(btn11, turn, 0, 0) }
+        btn12.setOnClickListener { handleButtonClick(btn12, turn, 0, 1) }
+        btn13.setOnClickListener { handleButtonClick(btn13, turn, 0, 2) }
+        btn14.setOnClickListener { handleButtonClick(btn14, turn, 1, 0) }
+        btn15.setOnClickListener { handleButtonClick(btn15, turn, 1, 1) }
+        btn16.setOnClickListener { handleButtonClick(btn16, turn, 1, 2) }
+        btn17.setOnClickListener { handleButtonClick(btn17, turn, 2, 0) }
+        btn18.setOnClickListener { handleButtonClick(btn18, turn, 2, 1) }
+        btn19.setOnClickListener { handleButtonClick(btn19, turn, 2, 2) }
+        btn20.setOnClickListener{ handleButtonClick(btn20, turn, 0, 1) }
+        btn21.setOnClickListener { handleButtonClick(btn21, turn, 0, 0) }
+        btn22.setOnClickListener { handleButtonClick(btn22, turn, 0, 1) }
+        btn23.setOnClickListener { handleButtonClick(btn23, turn, 0, 2) }
+        btn24.setOnClickListener { handleButtonClick(btn24, turn, 1, 0) }
+        btn25.setOnClickListener { handleButtonClick(btn25, turn, 1, 1) }
 
 
 
         fun resetGame() {
-            for (i in 0..2) {
-                for (j in 0..2) {
+            for (i in 0..4) {
+                for (j in 0..4) {
                     board[i][j] = "" // 보드 상태 초기화
                     btnArray[i][j].text = ""
                 }
@@ -193,8 +236,8 @@ class TicTacToe : AppCompatActivity() {
         fun undoTileState(position: Int) {
             // 1. 선택한 위치의 보드 상태로 되돌리기
             val boardState = boardHistory[position]
-            for (i in 0..2) {
-                for (j in 0..2) {
+            for (i in 0..4) {
+                for (j in 0..4) {
                     btnArray[i][j].text = boardState.board[i][j] // 보드 상태 복원
                     board[i][j] = boardState.board[i][j] // 현재 보드 상태도 복원
                 }

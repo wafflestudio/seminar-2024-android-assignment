@@ -28,14 +28,47 @@ class HistoryAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val boardState = boardList[position]
         val boardCells = arrayOf(
-            arrayOf(holder.boardGrid.findViewById<TextView>(R.id.cell_0_0), holder.boardGrid.findViewById<TextView>(R.id.cell_0_1), holder.boardGrid.findViewById<TextView>(R.id.cell_0_2)),
-            arrayOf(holder.boardGrid.findViewById<TextView>(R.id.cell_1_0), holder.boardGrid.findViewById<TextView>(R.id.cell_1_1), holder.boardGrid.findViewById<TextView>(R.id.cell_1_2)),
-            arrayOf(holder.boardGrid.findViewById<TextView>(R.id.cell_2_0), holder.boardGrid.findViewById<TextView>(R.id.cell_2_1), holder.boardGrid.findViewById<TextView>(R.id.cell_2_2))
+            arrayOf(
+                holder.boardGrid.findViewById<TextView>(R.id.cell_0_0),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_0_1),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_0_2),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_0_3),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_0_4)
+            ),
+            arrayOf(
+                holder.boardGrid.findViewById<TextView>(R.id.cell_1_0),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_1_1),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_1_2),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_1_3),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_1_4)
+            ),
+            arrayOf(
+                holder.boardGrid.findViewById<TextView>(R.id.cell_2_0),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_2_1),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_2_2),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_2_3),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_2_4)
+            ),
+            arrayOf(
+                holder.boardGrid.findViewById<TextView>(R.id.cell_3_0),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_3_1),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_3_2),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_3_3),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_3_4)
+            ),
+            arrayOf(
+                holder.boardGrid.findViewById<TextView>(R.id.cell_4_0),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_4_1),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_4_2),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_4_3),
+                holder.boardGrid.findViewById<TextView>(R.id.cell_4_4)
+            )
         )
 
+
         // 보드의 각 셀에 상태 적용
-        for (i in 0..2) {
-            for (j in 0..2) {
+        for (i in 0..4) {
+            for (j in 0..4) {
                 boardCells[i][j].text = boardState.board[i][j] // 저장된 보드 상태를 그리드에 적용
             }
         }
