@@ -24,6 +24,9 @@
         <activity
             android:name=".UserInformationActivity">
         </activity>
+        <activity
+            android:name=".TabActivity">
+        </activity>
     </application>
 
 </manifest>
