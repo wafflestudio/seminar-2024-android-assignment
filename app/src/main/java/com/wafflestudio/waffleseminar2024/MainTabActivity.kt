@@ -20,7 +20,8 @@ class MainTabActivity : AppCompatActivity() {
         val tabTitles = arrayOf("게임", "앱", "검색", "프로필")
 
         // ViewPager2 Adapter 설정
-        val pagerAdapter = CustomPagerAdapter()
+        val workspaceUrl = intent.getStringExtra("WORKSPACE_URL")
+        val pagerAdapter = CustomPagerAdapter(workspaceUrl!!)
         binding.viewPager.adapter = pagerAdapter
 
         // TabLayout과 ViewPager2 연결
