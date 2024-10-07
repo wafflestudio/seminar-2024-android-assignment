@@ -7,6 +7,10 @@ android {
     namespace = "com.wafflestudio.waffleseminar2024"
     compileSdk = 34
 
+    viewBinding {
+        enable = true
+    }
+
     defaultConfig {
         applicationId = "com.wafflestudio.waffleseminar2024"
         minSdk = 24
