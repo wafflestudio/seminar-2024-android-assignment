@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@android:color/background_light"
+    android:padding="16dp">
+
+    <!-- TextView가 나머지 공간을 차지하도록 layout_weight 설정 -->
+    <TextView
+        android:id="@+id/genreName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp" />
+
+    <!-- ImageView가 오른쪽에 오도록 설정 -->
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/adventure"
+        android:contentDescription="아이콘 설명" />
+</LinearLayout>

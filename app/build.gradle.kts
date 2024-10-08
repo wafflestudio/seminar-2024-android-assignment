@@ -45,4 +45,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("io.coil-kt:coil:2.4.0") // 버전 확인 후 추가
+    implementation("io.coil-kt:coil-svg:2.4.0") // SVG 지원이 필요할 경우 추가
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
 }
