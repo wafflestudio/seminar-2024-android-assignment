@@ -22,12 +22,15 @@ import com.wafflestudio.waffleseminar2024.databinding.ActivityUserInformationBin
 class TabActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTabBinding
     private val searchViewModel: SearchViewModel by viewModels()
+    private var workspaceUrl: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityTabBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        workspaceUrl = intent.getStringExtra("WORKSPACE_URL")
 
         Log.d("tab activity", "binding correct")
 
@@ -44,7 +47,7 @@ class TabActivity : AppCompatActivity() {
         )
         val tabTexts = listOf("게임", "앱", "검색", "프로필")
 
-        val adapter = TabAdapter(this, searchViewModel)
+        val adapter = TabAdapter(this, searchViewModel, workspaceUrl)
         Log.d("tab activity", "adapter correct")
 
         viewPager.adapter = adapter
