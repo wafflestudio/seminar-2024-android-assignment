@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-import coil.load
+import coil3.load
 
 class MovieAdapter(private var movies: List<Movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
@@ -14,7 +14,9 @@ class MovieAdapter(private var movies: List<Movie>) : RecyclerView.Adapter<Movie
         private val posterImageView: ImageView = view.findViewById(R.id.posterImageView)
 
         fun bind(movie: Movie) {
-            val posterUrl = "https://image.tmdb.org/t/p/w185${movie.poster_path}"
+            val posterUrl = movie.poster_path?.let {
+                "https://image.tmdb.org/t/p/w185$it"
+            } ?: R.drawable.ic_app
             posterImageView.load(posterUrl)
         }
     }

@@ -1721,6 +1721,7 @@ class SearchViewModel: ViewModel() {
 
     private fun loadMovies(jsonString: String) {
         val movieList = Json.decodeFromString<MovieList>(jsonString)
+        Log.d("SearchViewModel", "JSON 파일 로드 성공")
         _movies.value = movieList.movies
         parsedMovies = movieList.movies
     }
@@ -1734,5 +1735,4 @@ class SearchViewModel: ViewModel() {
         val filteredMovies = parsedMovies.filter { it.genre_ids.contains(genreId) }
         _movies.value = filteredMovies
     }
-
 }

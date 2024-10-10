@@ -76,21 +76,33 @@ class TabAdapter(
             val adapter = GenreAdapter(listOf())
             recyclerView.adapter = adapter
 
-            searchViewModel.genres.observe(activity, Observer { genres ->
+            searchViewModel.genres.observe(activity) { genres ->
                 Log.d("TabAdapter", "Genres received: ${genres.size}")
                 adapter.updateGenres(genres)
                 Log.d("TabAdapter", "Adapter updated with new genres")
-            })
-
+            }
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
+                    Log.d("queryListener", "query: $query")
                     query?.let {
                         val genreId = getGenreIdByName(it)
                         if (genreId != null) {
                             searchViewModel.filterMoviesByGenre(genreId)
                         } else {
                             searchViewModel.searchMovies(it)
+                        }
+                        
+                        searchGenre.text = "영화 & 시리즈"
+
+                        recyclerView.layoutManager = GridLayoutManager(itemView.context, 3)
+                        val movieAdapter = MovieAdapter(listOf())
+                        recyclerView.adapter = movieAdapter
+
+                        searchViewModel.movies.observe(activity) { movies ->
+                            Log.d("TabAdapter", "Movies received: ${movies.size}")
+                            movieAdapter.updateMovies(movies)
+                            Log.d("TabAdapter", "Movie adapter updated with new movies")
                         }
                     }
                     return true
