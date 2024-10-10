@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -33,6 +35,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    android {
+        buildFeatures {
+            viewBinding = true
+        }
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
 }
 
 dependencies {
@@ -45,4 +58,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.viewpager2)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
+    implementation(kotlin("script-runtime"))
 }
