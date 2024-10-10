@@ -13,9 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewStub
 import android.widget.EditText
-import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -40,7 +40,6 @@ class TabAdapter(
             1 -> holder.bindText("page2")
             2 -> holder.bindSearchTab()
             3 -> holder.bindUserInformationTab()
-            //3 -> holder.bindText("page3")
         }
     }
 
@@ -82,7 +81,52 @@ class TabAdapter(
                 adapter.updateGenres(genres)
                 Log.d("TabAdapter", "Adapter updated with new genres")
             })
+
+
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let {
+                        val genreId = getGenreIdByName(it)
+                        if (genreId != null) {
+                            searchViewModel.filterMoviesByGenre(genreId)
+                        } else {
+                            searchViewModel.searchMovies(it)
+                        }
+                    }
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return true
+                }
+            })
         }
+
+        fun getGenreIdByName(genreName: String): Int? {
+            val genreMap = mapOf(
+                "액션" to 28,
+                "모험" to 12,
+                "애니메이션" to 16,
+                "코미디" to 35,
+                "범죄" to 80,
+                "다큐멘터리" to 99,
+                "드라마" to 18,
+                "가족" to 10751,
+                "판타지" to 14,
+                "역사" to 36,
+                "공포" to 27,
+                "음악" to 10402,
+                "미스터리" to 9648,
+                "로맨스" to 10749,
+                "SF" to 878,
+                "TV 영화" to 10770,
+                "스릴러" to 53,
+                "전쟁" to 10752,
+                "서부" to 37
+            )
+            return genreMap[genreName]
+        }
+
 
         fun bindUserInformationTab() {
             viewStub.visibility = View.VISIBLE

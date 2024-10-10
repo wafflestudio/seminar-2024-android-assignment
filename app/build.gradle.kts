@@ -43,6 +43,11 @@ android {
     }
 }
 
+repositories {
+    google()
+    mavenCentral()
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -56,4 +61,9 @@ dependencies {
 
     implementation(libs.androidx.viewpager2)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
+    implementation(kotlin("script-runtime"))
 }
