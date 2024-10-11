@@ -78,7 +78,9 @@ class CustomPagerAdapter(private val workspaceUrl: String) : RecyclerView.Adapte
 
         private fun setupRecyclerView() {
             // 초기 어댑터 설정
-            buttonAdapter = SearchButtonGridAdapter()
+            buttonAdapter = SearchButtonGridAdapter(viewModel) {
+                showMoviePosters() // 어댑터 스위치
+            }
             binding.recyclerView.apply {
                 layoutManager = GridLayoutManager(binding.root.context, 2) // 2*6 그리드 설정
                 adapter = buttonAdapter

@@ -1763,4 +1763,11 @@ class SearchViewModel : ViewModel() {
         Log.d("SearchMovies", "Filtered movies: ${filteredMovies?.size}")
         _movieData.value = filteredMovies
     }
+
+    fun filterMoviesByGenre(genreId: Int) {
+        val filteredMovies = allMovies.filter { movie ->
+            movie.genre_ids.contains(genreId)
+        }
+        _movieData.value = filteredMovies
+    }
 }
