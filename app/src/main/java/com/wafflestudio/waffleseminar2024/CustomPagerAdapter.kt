@@ -6,9 +6,11 @@ import android.text.SpannableString
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -61,26 +63,67 @@ class CustomPagerAdapter(private val workspaceUrl: String) : RecyclerView.Adapte
     // 각 페이지에 대한 ViewHolder 정의
     class GameViewHolder(binding: GamePageBinding) : RecyclerView.ViewHolder(binding.root)
     class AppViewHolder(binding: AppPageBinding) : RecyclerView.ViewHolder(binding.root)
-    class SearchViewHolder(private val binding: SearchPageBinding, private val viewModel: SearchViewModel) : RecyclerView.ViewHolder(binding.root) {
+    class SearchViewHolder(
+        private val binding: SearchPageBinding,
+        private val viewModel: SearchViewModel
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var buttonAdapter: SearchButtonGridAdapter
+        private lateinit var moviePosterAdapter: MoviePosterAdapter
 
         init {
             setupRecyclerView()
+            setupSearchAction()
         }
 
         private fun setupRecyclerView() {
-            val adapter = SearchButtonGridAdapter()
+            // 초기 어댑터 설정
+            buttonAdapter = SearchButtonGridAdapter()
             binding.recyclerView.apply {
                 layoutManager = GridLayoutManager(binding.root.context, 2) // 2*6 그리드 설정
-                this.adapter = adapter
+                adapter = buttonAdapter
             }
 
-            // ViewModel의 LiveData에서 데이터를 직접 가져와서 RecyclerView에 전달
-            val data = viewModel.buttonData.value
-            if (data != null) {
-                adapter.submitList(data)
+            // ViewModel의 LiveData에서 버튼 데이터를 가져와서 어댑터에 전달
+            viewModel.buttonData.observeForever { data ->
+                buttonAdapter.submitList(data)
+            }
+        }
+
+        private fun setupSearchAction() {
+            // EditText의 검색 버튼 클릭 시 이벤트 처리
+            binding.searchEditText.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    val query = binding.searchEditText.text.toString()
+                    Log.d("SearchAction", "Search query: $query")
+                    viewModel.searchMovies(query)
+
+                    // 영화 포스터 어댑터로 전환
+                    showMoviePosters()
+                    true
+                } else {
+                    false
+                }
+            }
+        }
+
+        private fun showMoviePosters() {
+            // 영화 포스터 어댑터 설정
+            moviePosterAdapter = MoviePosterAdapter()
+            //binding.recyclerView.adapter = moviePosterAdapter
+            binding.recyclerView.apply {
+                layoutManager = GridLayoutManager(binding.root.context, 3) // 2*6 그리드 설정
+                adapter = moviePosterAdapter
+            }
+
+            // ViewModel의 LiveData에서 영화 데이터를 가져와서 어댑터에 전달
+            viewModel.movieData.observeForever { movieList ->
+                Log.d("ShowMoviePosters", "Movies to display: ${movieList.size}")
+                moviePosterAdapter.submitList(movieList)
             }
         }
     }
+
 
     class ProfileViewHolder(private val binding: ActivityUserInformationBinding, workspaceUrl: String) : RecyclerView.ViewHolder(binding.root) {
 
