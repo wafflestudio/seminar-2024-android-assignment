@@ -27,7 +27,24 @@ class HomeActivity: FragmentActivity() {
         val tabLayout: TabLayout = homeBinding.tabLayout
         viewPager.adapter = ViewPagerAdapter(items)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = "Tab ${position + 1}"
+            when(position){
+                0->{
+                    tab.text = "게임"
+                    tab.setIcon(R.drawable.game)
+                }
+                1->{
+                    tab.text = "앱"
+                    tab.setIcon(R.drawable.app)
+                }
+                2->{
+                    tab.text = "검색"
+                    tab.setIcon(R.drawable.search)
+                }
+                else->{
+                    tab.text = "프로필"
+                    tab.setIcon(R.drawable.profile)
+                }
+            }
         }.attach()
     }
 }
