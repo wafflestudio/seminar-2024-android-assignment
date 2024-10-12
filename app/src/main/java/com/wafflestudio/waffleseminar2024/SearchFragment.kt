@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
 
+interface OnGenreClickListener {
+    fun onGenreClick(genreId: Int)
+}
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), OnGenreClickListener {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
     lateinit var searchResultRecyclerView: RecyclerView
@@ -37,15 +40,19 @@ class SearchFragment : Fragment() {
         genreRecyclerView = binding.genreRecyclerView
         val gridLayoutManager = GridLayoutManager(requireContext(), 2)
         genreRecyclerView.layoutManager = gridLayoutManager
-        genreRecyclerView.adapter = GenreRecyclerViewAdapter(GenreList)
+        genreRecyclerView.adapter = GenreRecyclerViewAdapter(GenreList, this)
 
         searchResultRecyclerView = binding.searchResultRecyclerView
-        val data: List<Movie> = titleQuery("e")
 
         searchButton.setOnClickListener{
             val data: List<Movie> = titleQuery(searchEditText.text.toString())
             showResult(data)
         }
+    }
+
+    override fun onGenreClick(genreId: Int) {
+        val data: List<Movie> = genreQuery(genreId)
+        showResult(data)
     }
 
     private fun showResult(data: List<Movie>) {
@@ -55,13 +62,17 @@ class SearchFragment : Fragment() {
         genreRecyclerView.visibility = View.INVISIBLE
     }
 
-
-    private fun titleQuery(query: String): List<Movie>{
+    private fun titleQuery(titleWord: String): List<Movie>{
         return MovieData.filter{ movie ->
-            movie.title.contains(query, ignoreCase = true)
+            movie.title.contains(titleWord, ignoreCase = true)
         }
     }
 
+    private fun genreQuery(genreId: Int): List<Movie> {
+        return MovieData.filter { movie ->
+            movie.genre_ids.contains(genreId)
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
