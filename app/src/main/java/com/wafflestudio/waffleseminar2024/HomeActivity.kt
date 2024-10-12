@@ -11,22 +11,23 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.wafflestudio.waffleseminar2024.databinding.HomeBinding
+import com.wafflestudio.waffleseminar2024.databinding.ActivityHomeBinding
 
-class Home : FragmentActivity() {
-    private lateinit var homeBinding: HomeBinding;
+
+class HomeActivity: FragmentActivity() {
+    private lateinit var homeBinding: ActivityHomeBinding;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-        homeBinding = HomeBinding.inflate(layoutInflater)
+        homeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(homeBinding.root)
-        val viewPager = homeBinding.viewPager
-        val tabLayout = homeBinding.tabLayout
 
-        val adapter = ViewPager2Adapter(this)
-        viewPager.adapter = adapter
+        val viewPager: ViewPager2 = homeBinding.viewPager
+        val items = listOf("Page 1", "Page 2", "Page 3", "Profile")
 
-
+        val tabLayout: TabLayout = homeBinding.tabLayout
+        viewPager.adapter = ViewPagerAdapter(items)
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = "Tab ${position + 1}"
+        }.attach()
     }
 }

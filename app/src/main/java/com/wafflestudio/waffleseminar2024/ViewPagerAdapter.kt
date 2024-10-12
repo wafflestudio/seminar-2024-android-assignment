@@ -4,43 +4,62 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Recycler
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.wafflestudio.waffleseminar2024.databinding.ActivityUserInformationBinding
+import org.w3c.dom.Text
 
-class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-
-    override fun getItemCount(): Int = 100
-
-    override fun createFragment(position: Int): Fragment {
-        // Return a NEW fragment instance in createFragment(int)
-        val fragment = DemoObjectFragment()
-        fragment.arguments = Bundle().apply {
-            // Our object is just an integer :-P
-            putInt("object", position + 1)
-        }
-        return fragment
-    }
-}
-
-class DemoObjectFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_collection_object, container, false)
+class ViewPagerAdapter(private val items: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
-            val textView: TextView = view.findViewById(android.R.id.text1)
-            textView.text = getInt(ARG_OBJECT).toString()
+    class GameViewHolder(view: View): RecyclerView.ViewHolder(view){
+        val textView: TextView = view.findViewById(R.id.PageGame)
+    }
+    class AppViewHolder(view: View): RecyclerView.ViewHolder(view){
+        val textView: TextView = view.findViewById(R.id.PageApp)
+    }
+    class SearchViewHolder(view: View): RecyclerView.ViewHolder(view){
+        val textView: TextView = view.findViewById(R.id.PageSearch)
+    }
+
+    class ProfileViewHolder(private val binding: ActivityUserInformationBinding): RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.page_item, parent, false)
+        return when(viewType){
+            0 -> {
+                val gameView = LayoutInflater.from(parent.context).inflate(R.layout.page_game, parent, false)
+                GameViewHolder(gameView)
+            }
+            1 -> {
+                val appView = LayoutInflater.from(parent.context).inflate(R.layout.page_app, parent, false)
+                AppViewHolder(appView)
+            }
+            2 -> {
+                val searchView = LayoutInflater.from(parent.context).inflate(R.layout.page_search, parent, false)
+                SearchViewHolder(searchView)
+            }
+            else -> {
+                val binding = ActivityUserInformationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                ProfileViewHolder(binding)
+            }
         }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
     }
 }

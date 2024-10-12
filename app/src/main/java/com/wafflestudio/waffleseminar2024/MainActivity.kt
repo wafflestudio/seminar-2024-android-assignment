@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             val workspaceUrl = editText.text.toString()
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra("WORKSPACE_URL", workspaceUrl)
             startActivity(intent)
         }
