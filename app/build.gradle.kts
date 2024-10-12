@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,14 +7,17 @@ plugins {
 android {
     namespace = "com.wafflestudio.waffleseminar2024"
     compileSdk = 34
-
+    android {
+        buildFeatures {
+            viewBinding = true
+        }
+    }
     defaultConfig {
         applicationId = "com.wafflestudio.waffleseminar2024"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

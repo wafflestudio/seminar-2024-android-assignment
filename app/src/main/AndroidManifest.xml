@@ -24,6 +24,8 @@
         <activity
             android:name=".UserInformationActivity">
         </activity>
+        <activity android:name=".Home">
+        </activity>
     </application>
 
 </manifest>
