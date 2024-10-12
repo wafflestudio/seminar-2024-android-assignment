@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp"
+    android:padding="4dp"
     android:gravity="center"
     android:background="?android:attr/selectableItemBackground">
 
@@ -11,9 +11,6 @@
         android:id="@+id/itemImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Item"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
         android:gravity="center"
-        android:padding="8dp"/>
+        android:padding="4dp"/>
 </LinearLayout>

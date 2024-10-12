@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,9 +34,7 @@ class SearchFragment : Fragment(), OnGenreClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         val searchEditText: EditText = binding.searchEditText
-        val searchButton: Button = binding.searchButton
-
-        searchButton.text = "검색"
+        val searchButton: ImageView = binding.searchButton
 
         genreRecyclerView = binding.genreRecyclerView
         val gridLayoutManager = GridLayoutManager(requireContext(), 2)
@@ -48,6 +47,14 @@ class SearchFragment : Fragment(), OnGenreClickListener {
             val data: List<Movie> = titleQuery(searchEditText.text.toString())
             showResult(data)
         }
+
+        binding.backButton.setOnClickListener{
+            hideResult()
+        }
+
+        binding.ProfileButton.setOnClickListener{
+            (activity as HomeActivity).viewPager.currentItem = 3
+        }
     }
 
     override fun onGenreClick(genreId: Int) {
@@ -56,10 +63,17 @@ class SearchFragment : Fragment(), OnGenreClickListener {
     }
 
     private fun showResult(data: List<Movie>) {
-        searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data)
         searchResultRecyclerView.visibility = View.VISIBLE
         genreRecyclerView.visibility = View.INVISIBLE
+        binding.backButton.visibility = View.VISIBLE
+    }
+
+    private fun hideResult(){
+        searchResultRecyclerView.visibility = View.INVISIBLE
+        genreRecyclerView.visibility = View.VISIBLE
+        binding.backButton.visibility = View.INVISIBLE
     }
 
     private fun titleQuery(titleWord: String): List<Movie>{

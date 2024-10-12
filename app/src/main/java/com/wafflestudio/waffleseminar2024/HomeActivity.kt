@@ -18,12 +18,13 @@ import com.wafflestudio.waffleseminar2024.databinding.ActivityHomeBinding
 
 class HomeActivity: FragmentActivity() {
     private lateinit var homeBinding: ActivityHomeBinding;
+    lateinit var viewPager: ViewPager2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(homeBinding.root)
 
-        val viewPager: ViewPager2 = homeBinding.viewPager
+        viewPager = homeBinding.viewPager
 
         val tabLayout: TabLayout = homeBinding.tabLayout
         viewPager.adapter = ViewPagerAdapter(this)
