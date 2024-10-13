@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.wafflestudio.waffleseminar2024.viewPagerFragments.OnGenreClickListener
 
 class GenreRecyclerViewAdapter(private val mData: List<Genre>, private val listener: OnGenreClickListener) : RecyclerView.Adapter<GenreRecyclerViewAdapter.ViewHolder>() {
 

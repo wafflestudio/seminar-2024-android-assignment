@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -16,19 +17,28 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.wafflestudio.waffleseminar2024.databinding.ActivityHomeBinding
 
 
-class HomeActivity: FragmentActivity() {
+class HomeActivity: AppCompatActivity() {
     private lateinit var homeBinding: ActivityHomeBinding;
     lateinit var viewPager: ViewPager2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(homeBinding.root)
 
+        val slackWorkspaceUrl = intent.getStringExtra("WORKSPACE_URL").toString()
+
+        setViewPager(slackWorkspaceUrl)
+        setTabLayout()
+    }
+
+    private fun setViewPager(slackWorkspaceUrl: String){
         viewPager = homeBinding.viewPager
+        viewPager.adapter = ViewPagerAdapter(this, slackWorkspaceUrl)
+    }
 
+    private fun setTabLayout(){
         val tabLayout: TabLayout = homeBinding.tabLayout
-        viewPager.adapter = ViewPagerAdapter(this)
-
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when(position){
                 0->{
@@ -50,4 +60,5 @@ class HomeActivity: FragmentActivity() {
             }
         }.attach()
     }
+
 }
