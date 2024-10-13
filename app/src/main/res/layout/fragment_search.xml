@@ -58,7 +58,9 @@
             android:layout_gravity="center_vertical"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="text"
+            android:imeOptions="actionSearch"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
