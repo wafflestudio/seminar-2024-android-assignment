@@ -2,6 +2,7 @@ package com.wafflestudio.waffleseminar2024
 
 
 import android.content.Context
+import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,10 +23,18 @@ interface OnGenreClickListener {
 }
 
 class SearchFragment : Fragment(), OnGenreClickListener {
+
+    override fun onGenreClick(genreId: Int) {
+        val data: List<Movie> = genreQuery(genreId)
+        showResult(data)
+    }
+
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+
     lateinit var searchResultRecyclerView: RecyclerView
     lateinit var genreRecyclerView: RecyclerView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,22 +46,15 @@ class SearchFragment : Fragment(), OnGenreClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setGenreRecyclerView()
+        setSearchResultRecyclerView()
+
         val searchEditText: EditText = binding.searchEditText
         val searchButton: ImageView = binding.searchButton
+        val profileButton: ImageView = binding.profileButton
+        val backButton: ImageView = binding.backButton
 
-        genreRecyclerView = binding.genreRecyclerView
-        val gridLayoutManager = GridLayoutManager(requireContext(), 2)
-        genreRecyclerView.layoutManager = gridLayoutManager
-        genreRecyclerView.adapter = GenreRecyclerViewAdapter(GenreList, this)
-
-        searchResultRecyclerView = binding.searchResultRecyclerView
-
-        searchButton.setOnClickListener{
-            val data: List<Movie> = titleQuery(searchEditText.text.toString())
-            showResult(data)
-        }
-
-        searchEditText.setOnEditorActionListener { v, actionId, event ->
+        searchEditText.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val data: List<Movie> = titleQuery(searchEditText.text.toString())
                 showResult(data)
@@ -63,18 +65,41 @@ class SearchFragment : Fragment(), OnGenreClickListener {
                 false
             }
         }
-        binding.backButton.setOnClickListener{
+
+        searchButton.setOnClickListener{
+            val data: List<Movie> = titleQuery(searchEditText.text.toString())
+            showResult(data)
+        }
+
+        backButton.setOnClickListener{
             hideResult()
         }
 
-        binding.ProfileButton.setOnClickListener{
+        profileButton.setOnClickListener{
             (activity as HomeActivity).viewPager.currentItem = 3
         }
     }
 
-    override fun onGenreClick(genreId: Int) {
-        val data: List<Movie> = genreQuery(genreId)
-        showResult(data)
+    private fun setGenreRecyclerView(){
+        genreRecyclerView = binding.genreRecyclerView
+        genreRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        genreRecyclerView.adapter = GenreRecyclerViewAdapter(GenreList, this)
+    }
+
+    private fun setSearchResultRecyclerView(){
+        searchResultRecyclerView = binding.searchResultRecyclerView
+    }
+
+    private fun titleQuery(titleWord: String): List<Movie>{
+        return MovieData.filter{ movie ->
+            movie.title.contains(titleWord, ignoreCase = true)
+        }
+    }
+
+    private fun genreQuery(genreId: Int): List<Movie> {
+        return MovieData.filter { movie ->
+            movie.genre_ids.contains(genreId)
+        }
     }
 
     private fun showResult(data: List<Movie>) {
@@ -91,17 +116,6 @@ class SearchFragment : Fragment(), OnGenreClickListener {
         binding.backButton.visibility = View.INVISIBLE
     }
 
-    private fun titleQuery(titleWord: String): List<Movie>{
-        return MovieData.filter{ movie ->
-            movie.title.contains(titleWord, ignoreCase = true)
-        }
-    }
-
-    private fun genreQuery(genreId: Int): List<Movie> {
-        return MovieData.filter { movie ->
-            movie.genre_ids.contains(genreId)
-        }
-    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
