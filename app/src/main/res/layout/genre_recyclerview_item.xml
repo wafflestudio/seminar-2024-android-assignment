@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:padding="8dp"
+    android:gravity="center"
+    android:background="@drawable/genre_recyclerview_item_background">
+
+    <!-- 각 아이템에 표시할 텍스트 -->
+    <TextView
+        android:id="@+id/itemTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Item"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_weight="1"
+        android:padding="8dp"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/android_icon"
+        android:contentDescription="Android Icon"/>
+
+</LinearLayout>
