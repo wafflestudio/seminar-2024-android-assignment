@@ -15,7 +15,7 @@ class SecondActivity : AppCompatActivity() {
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
-    private lateinit var adapter: ViewPagerAdapter
+    private lateinit var adapter: FragmentViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class SecondActivity : AppCompatActivity() {
         viewPager = findViewById<ViewPager2>(R.id.viewPager)
         tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         // Adapter 설정
-        adapter = ViewPagerAdapter(this)
+        adapter = FragmentViewPagerAdapter(this)
         viewPager.adapter = adapter
 
 
@@ -62,12 +62,6 @@ class SecondActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
-
-
-//        // TabLayout과 ViewPager2 연동
-//        TabLayoutMediator(tabLayout,viewPager){ tab, position ->
-//            tab.text = "Tab ${position+1}"
-//        }.attach()
 
 
 

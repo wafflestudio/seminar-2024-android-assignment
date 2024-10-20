@@ -36,7 +36,10 @@ android {
 }
 
 dependencies {
+    val fragment_version = "1.8.3"
 
+    // Kotlin
+    implementation("androidx.fragment:fragment-ktx:$fragment_version")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
