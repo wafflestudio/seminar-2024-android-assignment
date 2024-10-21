@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.kotlin.plugin.serialization")  // serialization 플러그인 활성화
+    id("androidx.navigation.safeargs")  // Safe Args 플러그인 추가
 }
 
 android {
@@ -26,6 +28,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -36,21 +39,27 @@ android {
 }
 
 dependencies {
-    val fragment_version = "1.8.3"
-
-    // Kotlin
-    implementation("androidx.fragment:fragment-ktx:$fragment_version")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // Jetpack Navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    // ViewPager2
+    implementation(libs.androidx.viewpager2)
+
+    // Testing libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("io.coil-kt:coil:2.4.0") // 버전 확인 후 추가
-    implementation("io.coil-kt:coil-svg:2.4.0") // SVG 지원이 필요할 경우 추가
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+    implementation(libs.kotlinx.serialization.json)  // Kotlinx Serialization JSON 의존성 추가
+    implementation("io.coil-kt:coil:2.2.2") // Coil 기본 버전
+    implementation("io.coil-kt:coil-svg:2.2.2") // SVG 이미지 지원 (필요시 추가)
+    implementation("com.google.code.gson:gson:2.9.0")  // Gson 의존성 추가
 
 }

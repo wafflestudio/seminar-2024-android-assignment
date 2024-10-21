@@ -25,7 +25,7 @@ class SecondActivity : AppCompatActivity() {
         tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         // Adapter 설정
         adapter = FragmentViewPagerAdapter(this)
-        viewPager.adapter = adapter
+        viewPager.adapter = PagerAdapter(this)
 
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
