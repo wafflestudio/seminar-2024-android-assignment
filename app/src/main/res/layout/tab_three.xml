@@ -5,23 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="top"
         android:iconifiedByDefault="false"
         android:queryHint="Search here..."
-        android:focusable="true"
-        android:focusableInTouchMode="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="앱 및 게임 검색"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"/>

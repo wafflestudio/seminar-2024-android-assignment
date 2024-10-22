@@ -5,32 +5,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
-
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-
-    <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search here..." />
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="영화 시리즈"
-            android:textSize="20sp" />
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewGenres"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:clipToPadding="false"
-            android:padding="16dp" />
+            android:layout_marginTop="8dp" />
 </LinearLayout>

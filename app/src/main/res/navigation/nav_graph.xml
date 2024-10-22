@@ -2,21 +2,39 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-
         app:startDestination="@id/searchOverviewFragment">
 
     <fragment
             android:id="@+id/searchOverviewFragment"
             android:name="com.wafflestudio.waffleseminar2024.fragments.SearchOverviewFragment"
-            tools:layout="@layout/fragment_search_overview">
+            tools:layout="@layout/tab_three">
         <action
                 android:id="@+id/action_searchOverview_to_searchInput"
                 app:destination="@id/searchInputFragment" />
+        <action
+                android:id="@+id/action_searchOverview_to_searchResult"
+                app:destination="@id/searchResultFragment" />
     </fragment>
 
     <fragment
             android:id="@+id/searchInputFragment"
             android:name="com.wafflestudio.waffleseminar2024.fragments.SearchInputFragment"
-            tools:layout="@layout/fragment_search_input" />
-</navigation>
+            tools:layout="@layout/fragment_search_input">
+        <action
+                android:id="@+id/action_searchInput_to_searchResult"
+                app:destination="@id/searchResultFragment" />
+    </fragment>
 
+    <fragment
+            android:id="@+id/searchResultFragment"
+            android:name="com.wafflestudio.waffleseminar2024.fragments.SearchResultFragment"
+            tools:layout="@layout/fragment_search_result">
+        <argument
+                android:name="genreId"
+                app:argType="integer" />
+        <argument
+                android:name="query"
+                app:argType="string"
+                app:nullable="true" />
+    </fragment>
+</navigation>
