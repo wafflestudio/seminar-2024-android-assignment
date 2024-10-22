@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/nav_graph"
-        app:startDestination="@id/firstFragment">
+        xmlns:tools="http://schemas.android.com/tools"
+
+        app:startDestination="@id/searchOverviewFragment">
 
     <fragment
-            android:id="@+id/firstFragment"
-            android:name="com.example.app.FirstFragment"
-            android:label="First Fragment" />
+            android:id="@+id/searchOverviewFragment"
+            android:name="com.wafflestudio.waffleseminar2024.fragments.SearchOverviewFragment"
+            tools:layout="@layout/fragment_search_overview">
+        <action
+                android:id="@+id/action_searchOverview_to_searchInput"
+                app:destination="@id/searchInputFragment" />
+    </fragment>
 
     <fragment
-            android:id="@+id/secondFragment"
-            android:name="com.example.app.SecondFragment"
-            android:label="Second Fragment" />
-
-    <fragment
-            android:id="@+id/thirdFragment"
-            android:name="com.example.app.ThirdFragment"
-            android:label="Third Fragment" />
-    <fragment
-            android:id="@+id/forthFragment"
-            android:name="com.example.app.ThirdFragment"
-            android:label="Third Fragment" />
+            android:id="@+id/searchInputFragment"
+            android:name="com.wafflestudio.waffleseminar2024.fragments.SearchInputFragment"
+            tools:layout="@layout/fragment_search_input" />
 </navigation>
+

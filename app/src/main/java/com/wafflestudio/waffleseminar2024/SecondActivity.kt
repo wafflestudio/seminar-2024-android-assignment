@@ -1,12 +1,7 @@
 package com.wafflestudio.waffleseminar2024
 
 import android.os.Bundle
-import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -15,56 +10,40 @@ class SecondActivity : AppCompatActivity() {
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
-    private lateinit var adapter: FragmentViewPagerAdapter
+    private lateinit var adapter: PagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tabs)
 
-        viewPager = findViewById<ViewPager2>(R.id.viewPager)
-        tabLayout = findViewById<TabLayout>(R.id.tabLayout)
-        // Adapter 설정
-        adapter = FragmentViewPagerAdapter(this)
-        viewPager.adapter = PagerAdapter(this)
+        // ViewPager2와 TabLayout 초기화
+        viewPager = findViewById(R.id.viewPager)
+        tabLayout = findViewById(R.id.tabLayout)
 
+        // PagerAdapter 연결
+        adapter = PagerAdapter(this)
+        viewPager.adapter = adapter
 
+        // TabLayout과 ViewPager2 연결
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            // 각 탭에 아이콘 및 텍스트 설정
             when (position) {
                 0 -> {
-                    tab.text = "탭 1"
-                    tab.setIcon(R.drawable.ic_tab1) // 아이콘 리소스
+                    tab.text = "Tab 1"
+                    tab.setIcon(R.drawable.ic_tab1)
                 }
                 1 -> {
-                    tab.text = "탭 2"
-                    tab.setIcon(R.drawable.ic_tab2) // 아이콘 리소스
+                    tab.text = "Tab 2"
+                    tab.setIcon(R.drawable.ic_tab2)
                 }
                 2 -> {
-                    tab.text = "탭 3"
-                    tab.setIcon(R.drawable.ic_tab3) // 아이콘 리소스
+                    tab.text = "Search"
+                    tab.setIcon(R.drawable.ic_tab3)
                 }
                 3 -> {
-                    tab.text = "탭 4"
-                    tab.setIcon(R.drawable.ic_tab4) // 아이콘 리소스
+                    tab.text = "User Info"
+                    tab.setIcon(R.drawable.ic_tab4)
                 }
             }
         }.attach()
-        // 탭 클릭 시 애니메이션 추가
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                // 애니메이션 적용
-                tab.view.animate().scaleX(1.2f).scaleY(1.2f).setDuration(150).withEndAction {
-                    tab.view.animate().scaleX(1f).scaleY(1f).setDuration(150).start()
-                }.start()
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
-
-
-
-
     }
-
 }
