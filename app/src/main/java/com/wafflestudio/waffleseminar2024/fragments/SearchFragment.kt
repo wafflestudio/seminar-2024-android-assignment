@@ -10,11 +10,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wafflestudio.waffleseminar2024.GenreAdapter
-import com.wafflestudio.waffleseminar2024.Movie
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.genreList
 import com.wafflestudio.waffleseminar2024.items
-import com.wafflestudio.waffleseminar2024.movieList
+//import com.wafflestudio.waffleseminar2024.movieList
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

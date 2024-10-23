@@ -6,9 +6,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.wafflestudio.waffleseminar2024.Movie
+import com.wafflestudio.waffleseminar2024.database.Movie  // 올바른 Movie 엔티티 import
 import com.wafflestudio.waffleseminar2024.R
-
 
 class MovieAdapter(
     private var movieList: List<Movie>

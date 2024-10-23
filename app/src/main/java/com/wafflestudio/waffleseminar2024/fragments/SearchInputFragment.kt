@@ -11,7 +11,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.wafflestudio.waffleseminar2024.R
-import com.wafflestudio.waffleseminar2024.movieList
+//import com.wafflestudio.waffleseminar2024.movieList
 
 
 class SearchInputFragment : Fragment(R.layout.fragment_search_input) {

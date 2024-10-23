@@ -1,8 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.kotlin.kapt")
     id("org.jetbrains.kotlin.plugin.serialization")  // serialization 플러그인 활성화
     id("androidx.navigation.safeargs")  // Safe Args 플러그인 추가
+    id("com.google.devtools.ksp")  // KSP 플러그인 적용
+
 }
 
 android {
@@ -61,5 +64,12 @@ dependencies {
     implementation("io.coil-kt:coil:2.2.2") // Coil 기본 버전
     implementation("io.coil-kt:coil-svg:2.2.2") // SVG 이미지 지원 (필요시 추가)
     implementation("com.google.code.gson:gson:2.9.0")  // Gson 의존성 추가
+
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    // kapt("androidx.room:room-compiler:$room_version")  // Kotlin용 annotation processor
+    implementation("androidx.room:room-ktx:$room_version")
+    ksp("androidx.room:room-compiler:2.5.2")
 
 }

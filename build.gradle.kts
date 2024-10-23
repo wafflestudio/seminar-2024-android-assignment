@@ -4,5 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.androidx.navigation.safeargs) apply false  // Safe Args 추가
     alias(libs.plugins.kotlin.serialization) apply false  // Serialization 플러그인 추가
+    alias(libs.plugins.ksp) apply false
 
 }
