@@ -6,82 +6,11 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <!-- 검색 입력 필드 -->
-
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/back"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <ImageView
-        android:id="@+id/profileButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <LinearLayout
-        android:id="@+id/searchLinearLayout"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/search_nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@drawable/search_linearlayout_background">
-        <ImageView
-            android:id="@+id/searchButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="Search"
-            android:layout_gravity="center_vertical"
-            android:padding="12dp"
-            android:backgroundTint="?android:attr/colorAccent"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/search"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/searchEditText"/>
-
-        <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:hint="영화 및 시리즈 검색"
-            android:padding="12dp"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:inputType="text"
-            android:imeOptions="actionSearch"/>
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/genreRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@id/searchLinearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searchResultRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@id/searchLinearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/search_nav_graph"
+        app:defaultNavHost="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
