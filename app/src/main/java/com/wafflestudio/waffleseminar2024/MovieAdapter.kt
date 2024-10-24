@@ -10,7 +10,9 @@ import com.wafflestudio.waffleseminar2024.database.Movie  // 올바른 Movie 엔
 import com.wafflestudio.waffleseminar2024.R
 
 class MovieAdapter(
-    private var movieList: List<Movie>
+    private var movieList: List<Movie>,
+    private val onMovieClick: (Int) -> Unit // 클릭 리스너 추가
+
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun getItemCount(): Int = movieList.size
@@ -32,6 +34,11 @@ class MovieAdapter(
         fun bind(movie: Movie) {
             movieTitle.text = movie.title
             moviePoster.load("https://image.tmdb.org/t/p/w185${movie.poster_path}")
+
+            // 아이템 클릭 시 영화 ID를 전달
+            itemView.setOnClickListener {
+                onMovieClick(movie.id ?:-1) // 클릭된 영화의 ID를 전달
+            }
         }
     }
 

@@ -32,16 +32,20 @@ class SearchResultFragment : Fragment(R.layout.fragment_search_result) {
             // SearchOverviewFragment로 돌아가기
             findNavController().popBackStack(R.id.searchOverviewFragment, false)
         }
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewGenres)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+
+        val movieAdapter = MovieAdapter(emptyList()) { movieId ->
+            // 클릭된 영화의 ID를 MovieDetailFragment로 전달
+            val action = SearchResultFragmentDirections.actionSearchResultFragmentToMovieDetailFragment(movieId)
+            findNavController().navigate(action)
+        }
+        recyclerView.adapter = movieAdapter
 
         val genreId = args.genreId
         val query = args.query
 
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
-
-        // 빈 어댑터로 초기화
-        val movieAdapter = MovieAdapter(emptyList())
-        recyclerView.adapter = movieAdapter
 
         // Room DB 인스턴스 가져오기
         val db = AppDatabase.getInstance(requireContext())
@@ -73,24 +77,10 @@ class SearchResultFragment : Fragment(R.layout.fragment_search_result) {
                 }
             }
 
-            // 장르 ID 또는 검색어에 따라 영화 목록 필터링
-//        val filteredMovies = when {
-//            genreId != -1 -> {
-//                // 장르 ID로 필터링
-//                movieList.movies.filter { genreId in it.genre_ids }
-//            }
-//            !query.isNullOrEmpty() -> {
-//                // 검색어로 필터링
-//                movieList.movies.filter { it.title.contains(query, ignoreCase = true) }
-//            }
-//            else -> {
-//                // 둘 다 없을 경우 빈 목록 반환
-//                emptyList()
-//            }
-//        }
+
 
             // 필터링된 영화 목록을 RecyclerView에 표시
-            recyclerView.adapter = MovieAdapter(filteredMovies)
+            movieAdapter.updateMovies(filteredMovies)
         }
     }
 }

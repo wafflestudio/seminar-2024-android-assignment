@@ -36,5 +36,22 @@
                 android:name="query"
                 app:argType="string"
                 app:nullable="true" />
+        <action
+                android:id="@+id/action_searchResultFragment_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment">
+            <argument
+                    android:name="movieId"
+                    app:argType="integer" />
+        </action>
+
+   </fragment>
+
+    <fragment
+            android:id="@+id/movieDetailFragment"
+            android:name="com.wafflestudio.waffleseminar2024.fragments.MovieDetailFragment"
+            android:label="Movie Detail" >
+        <argument
+                android:name="movieId"
+                app:argType="integer" />
     </fragment>
 </navigation>

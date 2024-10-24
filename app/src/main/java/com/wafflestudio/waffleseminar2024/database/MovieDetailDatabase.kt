@@ -6,22 +6,21 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Movie::class], version = 1)
+@Database(entities = [MovieDetail::class], version = 1)
 @TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun movieDao(): MovieDao
-//    abstract fun movieDetailDao(): MovieDao
+abstract class MovieDetailDatabase : RoomDatabase() {
+    abstract fun movieDetailDao(): MovieDetailDao
 
     companion object {
         @Volatile
-        private var INSTANCE: AppDatabase? = null
+        private var INSTANCE: MovieDetailDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase {
+        fun getInstance(context: Context): MovieDetailDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    AppDatabase::class.java,
-                    "my_database"
+                    MovieDetailDatabase::class.java,
+                    "movie_detail_database"
                 ).fallbackToDestructiveMigration()
                     .createFromAsset("database/prepopulated_db.db")
                     .build()
