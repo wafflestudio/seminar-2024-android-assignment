@@ -1,6 +1,5 @@
 package com.wafflestudio.waffleseminar2024.fragments
 
-import MovieAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.wafflestudio.waffleseminar2024.GenreAdapter
+import com.wafflestudio.waffleseminar2024.adapters.GenreAdapter
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.genreList
 import com.wafflestudio.waffleseminar2024.items

@@ -1,3 +1,5 @@
+package com.wafflestudio.waffleseminar2024.adapters
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

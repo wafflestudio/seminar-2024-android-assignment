@@ -1,4 +1,4 @@
-package com.wafflestudio.waffleseminar2024
+package com.wafflestudio.waffleseminar2024.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.wafflestudio.waffleseminar2024.Genre
+import com.wafflestudio.waffleseminar2024.R
 
 
 class GenreAdapter(

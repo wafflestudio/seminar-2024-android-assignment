@@ -38,33 +38,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         }
 
 
-        // ID를 TextView에 표시
-//        if (movieId != -1) {
-//
-//            movieIdTextView.text = "Movie ID: $movieId"
-//        } else {
-//            movieIdTextView.text = "Invalid Movie ID"
-//        }
-
-//        if (movieId != -1) {
-//            // Room DB 인스턴스 가져오기
-//            val db = MovieDetailDatabase.getInstance(requireContext())
-//            val movieDetailDao = db.movieDetailDao()
-//
-//            // 코루틴을 사용해 DB에서 데이터 가져오기
-//            lifecycleScope.launch {
-//                val movieDetail = movieDetailDao.getMovieDetailById(movieId)
-//                if (movieDetail != null) {
-//                    // 영화 제목을 TextView에 표시
-//                    movieIdTextView.text = movieDetail.title ?: "No Title Found"
-//                } else {
-//                    movieIdTextView.text = "Movie not found"
-//                }
-//            }
-//        } else {
-//            movieIdTextView.text = "Invalid Movie ID"
-//        }
-
         if (movieId != -1) {
 
             val db = MovieDetailDatabase.getInstance(requireContext())

@@ -1,18 +1,11 @@
 package com.wafflestudio.waffleseminar2024.fragments
 
-import MovieAdapter
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.widget.Toolbar
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.wafflestudio.waffleseminar2024.GenreAdapter
 import com.wafflestudio.waffleseminar2024.R
-import com.wafflestudio.waffleseminar2024.genreList
-import com.wafflestudio.waffleseminar2024.items
+
 //import com.wafflestudio.waffleseminar2024.movieList
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
@@ -28,7 +21,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
 //class SearchFragment : Fragment(R.layout.tab_three) {
 //    private var isGenreListVisible = true
-//    private var movieAdapter: MovieAdapter? = null
+//    private var movieAdapter: com.wafflestudio.waffleseminar2024.adapters.MovieAdapter? = null
 //
 //    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 //        super.onViewCreated(view, savedInstanceState)
@@ -89,7 +82,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 //    }
 //
 //    private fun setMovieAdapter(recyclerView: RecyclerView, filteredMovies: List<Movie>) {
-//        movieAdapter = MovieAdapter(filteredMovies)
+//        movieAdapter = com.wafflestudio.waffleseminar2024.adapters.MovieAdapter(filteredMovies)
 //        recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
 //        recyclerView.adapter = movieAdapter
 //    }
