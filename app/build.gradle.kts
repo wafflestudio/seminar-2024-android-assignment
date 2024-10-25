@@ -3,9 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.kapt")
     id("org.jetbrains.kotlin.plugin.serialization")  // serialization 플러그인 활성화
-    id("androidx.navigation.safeargs")  // Safe Args 플러그인 추가
+    alias(libs.plugins.androidx.navigation.safeargs)  // Safe Args 적용
     id("com.google.devtools.ksp")  // KSP 플러그인 적용
-
 }
 
 android {

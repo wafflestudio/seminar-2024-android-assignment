@@ -20,6 +20,9 @@
             android:id="@+id/searchInputFragment"
             android:name="com.wafflestudio.waffleseminar2024.fragments.SearchInputFragment"
             tools:layout="@layout/fragment_search_input">
+        <argument
+            android:name = "query"
+            app.argType="string"/>
         <action
                 android:id="@+id/action_searchInput_to_searchResult"
                 app:destination="@id/searchResultFragment" />

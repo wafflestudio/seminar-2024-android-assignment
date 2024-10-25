@@ -1,48 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
-
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+        <!-- Toolbar -->
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                android:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                android:theme="?attr/actionBarTheme"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <ImageView
-                android:id="@+id/posterImageView"
+        <!-- 포스터와 제목 -->
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="Movie Poster" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="8dp">
 
+            <ImageView
+                    android:id="@+id/posterImageView"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="16dp" />
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/releaseDateTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 줄거리 -->
         <TextView
-                android:id="@+id/titleTextView"
+                android:text="Overview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp" />
-
+                android:paddingTop="16dp" />
         <TextView
                 android:id="@+id/overviewTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
-
-        <TextView
-                android:id="@+id/releaseDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:textSize="16sp"
+                android:paddingTop="8dp" />
     </LinearLayout>
 </ScrollView>

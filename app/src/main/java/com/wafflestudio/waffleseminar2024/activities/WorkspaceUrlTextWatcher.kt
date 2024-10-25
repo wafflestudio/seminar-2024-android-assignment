@@ -1,4 +1,4 @@
-package com.wafflestudio.waffleseminar2024
+package com.wafflestudio.waffleseminar2024.activities
 
 import android.text.Editable
 import android.text.TextWatcher

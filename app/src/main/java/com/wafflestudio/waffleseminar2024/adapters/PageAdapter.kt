@@ -1,4 +1,4 @@
-package com.wafflestudio.waffleseminar2024
+package com.wafflestudio.waffleseminar2024.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

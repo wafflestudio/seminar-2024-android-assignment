@@ -14,32 +14,25 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.database.AppDatabase
-import com.wafflestudio.waffleseminar2024.database.MovieDetail
 import com.wafflestudio.waffleseminar2024.database.MovieDetailDatabase
+import com.wafflestudio.waffleseminar2024.database.MovieDetail
 import kotlinx.coroutines.launch
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
+    private val args: MovieDetailFragmentArgs by navArgs()  // Safe Args로 전달된 movieId 받기
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        val movieId = arguments?.getInt("movieId") ?: -1
-        Log.d("MovieDetailFragment", "Received movieId: $movieId")  // 전달된 ID 확인
-
         val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        setupToolbar(toolbar)
 
-        // Toolbar 설정
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back)  // 뒤로가기 아이콘 설정
-        toolbar.setNavigationOnClickListener {
-            // SearchOverviewFragment로 돌아가기
-            findNavController().popBackStack(R.id.searchOverviewFragment, false)
-        }
-
+        val movieId = args.movieId  // 전달받은 영화 ID
+        Log.d("MovieDetailFragment", "Received movieId: $movieId")
 
         if (movieId != -1) {
-
+            // Room DB에서 데이터 가져오기
             val db = MovieDetailDatabase.getInstance(requireContext())
             val movieDetailDao = db.movieDetailDao()
 
@@ -49,6 +42,15 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
             }
         }
     }
+
+    private fun setupToolbar(toolbar: Toolbar) {
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
     private fun displayMovieDetails(movie: MovieDetail, view: View) {
         val posterImageView = view.findViewById<ImageView>(R.id.posterImageView)
         val titleTextView = view.findViewById<TextView>(R.id.titleTextView)

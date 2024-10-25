@@ -1,4 +1,4 @@
-package com.wafflestudio.waffleseminar2024
+package com.wafflestudio.waffleseminar2024.activities
 
 import android.content.Intent
 import android.net.Uri
@@ -11,6 +11,7 @@ import android.view.Menu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.wafflestudio.waffleseminar2024.R
 
 class UserInformationActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

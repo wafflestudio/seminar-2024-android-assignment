@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wafflestudio.waffleseminar2024.adapters.GenreAdapter
 import com.wafflestudio.waffleseminar2024.R
-import com.wafflestudio.waffleseminar2024.genreList
-import com.wafflestudio.waffleseminar2024.items
+import com.wafflestudio.waffleseminar2024.data.genreList
+import com.wafflestudio.waffleseminar2024.data.items
 //import com.wafflestudio.waffleseminar2024.movieList
 
 class SearchOverviewFragment : Fragment(R.layout.tab_three) {

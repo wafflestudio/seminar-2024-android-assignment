@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.wafflestudio.waffleseminar2024.Genre
+import com.wafflestudio.waffleseminar2024.data.Genre
 import com.wafflestudio.waffleseminar2024.R
 
 

@@ -1,4 +1,6 @@
-package com.wafflestudio.waffleseminar2024
+package com.wafflestudio.waffleseminar2024.data
+
+import com.wafflestudio.waffleseminar2024.R
 
 data class Genre(
     val id: Int,
