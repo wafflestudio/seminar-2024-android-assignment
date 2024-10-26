@@ -21,7 +21,11 @@ import com.wafflestudio.waffleseminar2024.MovieData
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
 import com.wafflestudio.waffleseminar2024.searchResultRecyclerViewAdapter
 
-class SearchFragment : Fragment(), OnGenreClickListener {
+interface OnGenreClickListener {
+    fun onGenreClick(genreId: Int)
+}
+
+class SearchOverviewFragment : Fragment(), OnGenreClickListener {
 
     override fun onGenreClick(genreId: Int) {
         val data: List<Movie> = genreQuery(genreId)
