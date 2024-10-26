@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 
-@Entity(tableName = "movie_table")
+@Entity(tableName = "example_table")
 @TypeConverters(Converters::class)
 data class MovieEntity(
     @PrimaryKey val id: Int?,
