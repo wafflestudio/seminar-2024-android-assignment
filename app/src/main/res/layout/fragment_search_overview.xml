@@ -6,8 +6,6 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <!-- 검색 입력 필드 -->
-
     <ImageView
         android:id="@+id/backButton"
         android:layout_width="50dp"
@@ -33,7 +31,9 @@
         android:layout_marginHorizontal="50dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:background="@drawable/search_linearlayout_background">
+        android:background="@drawable/search_linearlayout_background"
+        android:clickable="true"
+        android:focusable="true">
         <ImageView
             android:id="@+id/searchButton"
             android:layout_width="50dp"
@@ -84,4 +84,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

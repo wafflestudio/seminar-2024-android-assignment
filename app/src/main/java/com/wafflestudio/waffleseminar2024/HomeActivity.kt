@@ -10,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -35,6 +37,7 @@ class HomeActivity: AppCompatActivity() {
     private fun setViewPager(slackWorkspaceUrl: String){
         viewPager = homeBinding.viewPager
         viewPager.adapter = ViewPagerAdapter(this, slackWorkspaceUrl)
+
     }
 
     private fun setTabLayout(){

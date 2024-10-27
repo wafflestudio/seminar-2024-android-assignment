@@ -16,7 +16,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.databinding.ActivityUserInformationBinding
-import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
 
 class UserInformationFragment : Fragment() {
 

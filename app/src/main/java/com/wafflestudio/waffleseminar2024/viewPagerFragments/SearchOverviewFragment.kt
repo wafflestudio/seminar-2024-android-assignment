@@ -5,12 +5,16 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wafflestudio.waffleseminar2024.GenreList
@@ -18,7 +22,8 @@ import com.wafflestudio.waffleseminar2024.GenreRecyclerViewAdapter
 import com.wafflestudio.waffleseminar2024.HomeActivity
 import com.wafflestudio.waffleseminar2024.Movie
 import com.wafflestudio.waffleseminar2024.MovieData
-import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
+import com.wafflestudio.waffleseminar2024.R
+import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchOverviewBinding
 import com.wafflestudio.waffleseminar2024.searchResultRecyclerViewAdapter
 
 interface OnGenreClickListener {
@@ -32,17 +37,19 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
         showResult(data)
     }
 
-    private var _binding: FragmentSearchBinding? = null
+    private var _binding: FragmentSearchOverviewBinding? = null
     private val binding get() = _binding!!
 
     lateinit var searchResultRecyclerView: RecyclerView
     lateinit var genreRecyclerView: RecyclerView
 
+    private lateinit var navController: NavController
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchOverviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -56,6 +63,7 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
         val searchButton: ImageView = binding.searchButton
         val profileButton: ImageView = binding.profileButton
         val backButton: ImageView = binding.backButton
+        val searchLinearLayout: LinearLayout = binding.searchLinearLayout
 
         searchEditText.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -68,11 +76,17 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
                 false
             }
         }
-
-        searchButton.setOnClickListener{
-            val data: List<Movie> = titleQuery(searchEditText.text.toString())
-            showResult(data)
+        navController = findNavController()
+        searchLinearLayout.setOnClickListener{
+            navController.navigate(R.id.clickSearchBar)
         }
+        searchEditText.setOnFocusChangeListener(object: OnFocusChangeListener{
+            override fun onFocusChange(v: View?, hasFocus: Boolean) {
+                if(hasFocus){
+                    navController.navigate(R.id.clickSearchBar)
+                }
+            }
+        })
 
         backButton.setOnClickListener{
             hideResult()
