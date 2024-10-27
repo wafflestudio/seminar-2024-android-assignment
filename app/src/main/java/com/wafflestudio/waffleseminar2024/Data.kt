@@ -1,5 +1,7 @@
 package com.wafflestudio.waffleseminar2024
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
@@ -1610,6 +1612,7 @@ const val MovieDataString3 = """
 ]"""
 
 @Serializable
+@Parcelize
 data class Movie(
     val adult: Boolean = false,
     val backdrop_path: String? = "",
@@ -1618,14 +1621,14 @@ data class Movie(
     val original_language: String = "en",
     val original_title: String = "",
     val overview: String = "",
-    val popularity: Float,
+    val popularity: Float = 0.0f,
     val poster_path: String = "",
     val release_date: String = "",
     val title: String = "",
     val video: Boolean = true,
-    val vote_average: Float,
+    val vote_average: Float = 0.0f,
     val vote_count: Int = 0
-)
+) : Parcelable
 
 
 fun parseMovieList(jsonString: String): List<Movie> {

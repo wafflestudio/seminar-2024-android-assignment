@@ -14,6 +14,7 @@ activity = "1.9.2"
 constraintlayout = "2.1.4"
 navigation = "2.5.3"
 navigationFragment = "2.8.3"
+navigation_safeargs = "2.5.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,8 +30,11 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version = "navigation" }
 navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version = "navigation" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version = "kotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation_safeargs" }
+kotlin-parcelize = { id = "kotlin-parcelize"}
 

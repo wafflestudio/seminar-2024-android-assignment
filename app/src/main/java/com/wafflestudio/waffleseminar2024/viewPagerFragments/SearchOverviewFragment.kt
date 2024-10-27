@@ -91,7 +91,8 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
     }
 
     private fun showResult(data: List<Movie>) {
-
+        val action = SearchInputFragmentDirections.actionToSearchResultFragment(data.toTypedArray())
+        navController.navigate(action)
     }
 
     override fun onDestroyView() {

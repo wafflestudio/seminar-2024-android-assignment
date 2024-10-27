@@ -1,37 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/searchOverviewFragment">
+    app:startDestination="@id/SearchOverviewFragment">
 
     <fragment
-        android:id="@+id/searchOverviewFragment"
+        android:id="@+id/SearchOverviewFragment"
         android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchOverviewFragment"
         android:label="Search Overview">
         <action
             android:id="@+id/action_to_searchInputFragment"
-            app:destination="@id/searchInputFragment" />
+            app:destination="@id/SearchInputFragment" />
+        <action
+            android:id="@+id/action_to_searchResultFragment"
+            app:destination="@id/SearchResultFragment"/>
     </fragment>
 
     <fragment
-        android:id="@+id/searchInputFragment"
+        android:id="@+id/SearchInputFragment"
         android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchInputFragment"
         android:label="Search Input">
         <action
             android:id="@+id/action_to_searchResultFragment"
-            app:destination="@id/searchResultFragment" />
+            app:destination="@id/SearchResultFragment"/>
+        <action
+            android:id="@+id/back_to_searchOverviewFragment"
+            app:destination="@id/SearchOverviewFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/searchResultFragment"
+        android:id="@+id/SearchResultFragment"
         android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchResultFragment"
         android:label="Search Result">
         <action
             android:id="@+id/action_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
+            app:destination="@id/MovieDetailFragment" />
+        <action
+            android:id="@+id/back_to_searchOverviewFragment"
+            app:destination="@id/SearchOverviewFragment" />
+        <action
+            android:id="@+id/action_to_searchInputFragment"
+            app:destination="@id/SearchInputFragment" />
+        <argument
+            android:name="movieList"
+            app:argType="com.wafflestudio.waffleseminar2024.Movie[]" />
     </fragment>
 
     <fragment
-        android:id="@+id/movieDetailFragment"
+        android:id="@+id/MovieDetailFragment"
         android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.MovieDetailFragment"
         android:label="Movie Detail" />
 </navigation>

@@ -54,6 +54,9 @@ class SearchInputFragment: Fragment() {
                 false
             }
         }
+        searchEditText.requestFocus()
+        val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT)
 
 
         searchButton.setOnClickListener{
@@ -62,7 +65,7 @@ class SearchInputFragment: Fragment() {
         }
 
         backButton.setOnClickListener{
-
+            navController.navigate(R.id.back_to_searchOverviewFragment)
         }
 
         profileButton.setOnClickListener{
@@ -77,6 +80,7 @@ class SearchInputFragment: Fragment() {
     }
 
     private fun showResult(data: List<Movie>) {
-
+        val action = SearchInputFragmentDirections.actionToSearchResultFragment(data.toTypedArray())
+        navController.navigate(action)
     }
 }
