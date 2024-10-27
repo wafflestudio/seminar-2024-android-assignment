@@ -8,4 +8,8 @@
     <color name="darkGreen">#FF006666</color>
     <color name="darkGreen2">#FF067656</color>
     <color name="linkBlue">#FF1F6595</color>
+    <color name="gold">#FFD700</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="dark_gray">#A9A9A9</color>
+
 </resources>

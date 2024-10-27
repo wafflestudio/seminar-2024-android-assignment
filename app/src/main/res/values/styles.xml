@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomRatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="colorControlNormal">#D3D3D3</item>
+        <item name="colorControlActivated">#FFD700</item>
+        <item name="android:progressTint">@color/gold</item>
+        <item name="android:secondaryProgressTint">@color/light_gray</item>
+        <item name="android:progressBackgroundTint">@color/dark_gray</item>
+    </style>
+</resources>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
@@ -10,63 +9,196 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-        <!-- Toolbar -->
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
-                android:theme="?attr/actionBarTheme"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        <!-- 포스터와 제목 -->
-        <LinearLayout
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                android:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="8dp">
+                android:layout_marginBottom="8dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
+            <!-- 배경 이미지 -->
             <ImageView
-                    android:id="@+id/posterImageView"
-                    android:layout_width="120dp"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:layout_marginEnd="16dp" />
+                    android:id="@+id/backdropImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop" />
+
+            <!-- 포스터와 텍스트를 포함하는 수평 LinearLayout -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="120dp"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="16dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                <!-- 포스터 이미지 -->
+                <ImageView
+                        android:id="@+id/posterImageView"
+                        android:layout_width="160dp"
+                        android:layout_height="240dp"
+                        android:scaleType="fitCenter"
+                        android:elevation="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:translationY="20dp"
+                android:layout_gravity="bottom" />
+
+                <!-- 제목과 평점 -->
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:paddingTop="8dp"
+                        android:gravity="top">
+
+                    <TextView
+                            android:id="@+id/titleTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="4dp"
+                            android:ellipsize="none"
+                            android:singleLine="false"
+                            android:maxLines="10"
+                            android:scrollHorizontally="false"
+                            android:breakStrategy="simple"
+                            android:layout_margin="8dp"
+                            android:text="제목"
+                            android:textSize="16sp"
+                            android:textColor="@color/white" />
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="8dp">
+
+                        <!-- 숫자 평점 표시 -->
+                        <TextView
+                                android:id="@+id/ratingTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0"
+                                android:textSize="16sp"
+                                android:layout_marginEnd="4dp"
+                                android:textColor="@android:color/white" />
+
+                        <!-- 별점 표시 -->
+                        <RatingBar
+                                android:id="@+id/ratingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:numStars="5"
+                                android:stepSize="0.1"
+                                android:isIndicator="true"
+                                android:scaleX="0.4"
+                                android:scaleY="0.4"
+                                android:theme="@style/CustomRatingBar"
+                                android:rating="0.0" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- 장르 목록 -->
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:scrollbars="none">
 
             <LinearLayout
+                    android:id="@+id/genresContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                <TextView
-                        android:id="@+id/titleTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                <TextView
-                        android:id="@+id/releaseDateTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:orientation="horizontal" />
+        </HorizontalScrollView>
 
         <!-- 줄거리 -->
         <TextView
-                android:text="Overview"
+                android:text="Summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:paddingTop="16dp" />
+
         <TextView
                 android:id="@+id/overviewTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:paddingTop="8dp" />
+                android:paddingTop="8dp"
+                android:layout_marginBottom="20dp"/>
+
+        <!-- Budget과 Revenue -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="16dp">
+            <TextView
+                    android:text="Original Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp" />
+            <TextView
+                    android:id="@+id/originalTitleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:layout_marginBottom="20dp"/>
+            <TextView
+                    android:text="Status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp" />
+            <TextView
+                    android:id="@+id/statusView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:layout_marginBottom="20dp"/>
+            <TextView
+                    android:text="Budget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/budgetTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:layout_marginBottom="20dp"/>
+
+            <TextView
+                    android:text="Revenue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp" />
+
+            <TextView
+                    android:id="@+id/revenueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

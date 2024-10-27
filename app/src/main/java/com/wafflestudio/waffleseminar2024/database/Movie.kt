@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 data class Movie(
     @PrimaryKey val id: Int?,
     val backdrop_path: String?,
-    val genre_ids: List<Int>?, // TypeConverter 사용 없이 문자열로 저장
+    val genre_ids: List<Int>?,
     val original_language: String?,
     val original_title: String?,
     val overview: String?,
