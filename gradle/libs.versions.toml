@@ -15,6 +15,10 @@ constraintlayout = "2.1.4"
 navigation = "2.5.3"
 navigationFragment = "2.8.3"
 navigation_safeargs = "2.5.3"
+roomCommon = "2.6.1"
+gson = "2.8.8"
+roomKtx = "2.6.1"
+adapters = "3.2.0-alpha11"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +35,10 @@ navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-kt
 navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version = "navigation" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version = "kotlin" }
+androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
+androidx-adapters = { group = "androidx.databinding", name = "adapters", version.ref = "adapters" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

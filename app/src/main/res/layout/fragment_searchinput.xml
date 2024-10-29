@@ -11,13 +11,6 @@
         android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-    <ImageView
-        android:id="@+id/profileButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
     <LinearLayout
         android:id="@+id/searchLinearLayout"
         android:layout_width="match_parent"
@@ -27,8 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="50dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@drawable/search_linearlayout_background">
+        android:orientation="horizontal">
         <ImageView
             android:id="@+id/searchButton"
             android:layout_width="50dp"
@@ -38,7 +30,6 @@
             android:padding="12dp"
             android:backgroundTint="?android:attr/colorAccent"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp"
             android:src="@drawable/search"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/searchEditText"/>
@@ -58,5 +49,15 @@
             android:imeOptions="actionSearch"/>
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchTermRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/searchLinearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
