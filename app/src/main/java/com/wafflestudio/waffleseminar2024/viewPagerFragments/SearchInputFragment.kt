@@ -16,12 +16,12 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.wafflestudio.waffleseminar2024.HomeActivity
 import com.wafflestudio.waffleseminar2024.Movie
 import com.wafflestudio.waffleseminar2024.MovieData
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchinputBinding
-import com.wafflestudio.waffleseminar2024.searchTermRecyclerViewAdapter
+import com.wafflestudio.waffleseminar2024.adapter.searchTermRecyclerViewAdapter
+import com.wafflestudio.waffleseminar2024.viewmodel.SearchInputViewmodel
 
 class SearchInputFragment: Fragment() {
     private lateinit var navController: NavController

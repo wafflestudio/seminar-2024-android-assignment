@@ -1,13 +1,13 @@
-package com.wafflestudio.waffleseminar2024
+package com.wafflestudio.waffleseminar2024.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.wafflestudio.waffleseminar2024.Movie
+import com.wafflestudio.waffleseminar2024.R
 
 class searchResultRecyclerViewAdapter(private val movieList: List<Movie>) : RecyclerView.Adapter<searchResultRecyclerViewAdapter.ViewHolder>() {
 

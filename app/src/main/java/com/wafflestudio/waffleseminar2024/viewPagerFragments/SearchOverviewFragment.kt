@@ -1,13 +1,10 @@
 package com.wafflestudio.waffleseminar2024.viewPagerFragments
 
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
@@ -16,14 +13,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wafflestudio.waffleseminar2024.GenreList
-import com.wafflestudio.waffleseminar2024.GenreRecyclerViewAdapter
+import com.wafflestudio.waffleseminar2024.adapter.GenreRecyclerViewAdapter
 import com.wafflestudio.waffleseminar2024.HomeActivity
 import com.wafflestudio.waffleseminar2024.Movie
 import com.wafflestudio.waffleseminar2024.MovieData
 import com.wafflestudio.waffleseminar2024.R
-import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchoverviewBinding
-import com.wafflestudio.waffleseminar2024.searchResultRecyclerViewAdapter
 
 interface OnGenreClickListener {
     fun onGenreClick(genreId: Int)
