@@ -21,10 +21,8 @@ import com.wafflestudio.waffleseminar2024.MovieData
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
 import com.wafflestudio.waffleseminar2024.searchResultRecyclerViewAdapter
 
-interface OnGenreClickListener {
-    fun onGenreClick(genreId: Int)
-}
 
+/*
 class SearchFragment : Fragment(), OnGenreClickListener {
 
     override fun onGenreClick(genreId: Int) {
@@ -125,3 +123,5 @@ class SearchFragment : Fragment(), OnGenreClickListener {
     }
 
 }
+
+ */

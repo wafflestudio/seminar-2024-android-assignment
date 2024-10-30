@@ -9,7 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 
-class searchResultRecyclerViewAdapter(private val movieList: List<Movie>) : RecyclerView.Adapter<searchResultRecyclerViewAdapter.ViewHolder>() {
+class searchResultRecyclerViewAdapter(
+    private val movieList: List<Movie>,
+    private val onItemClick: (Movie) -> Unit
+) : RecyclerView.Adapter<searchResultRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.itemImageView)
@@ -25,6 +28,10 @@ class searchResultRecyclerViewAdapter(private val movieList: List<Movie>) : Recy
         val currentItem = movieList[position]
         val imageUrl = "https://image.tmdb.org/t/p/w185" + currentItem.poster_path
         holder.imageView.load(imageUrl)
+
+        holder.imageView.setOnClickListener {
+            onItemClick(currentItem)
+        }
     }
 
     override fun getItemCount(): Int {

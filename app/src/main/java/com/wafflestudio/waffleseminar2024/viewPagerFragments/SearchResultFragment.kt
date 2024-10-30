@@ -15,10 +15,19 @@ import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
 import com.wafflestudio.waffleseminar2024.searchResultRecyclerViewAdapter
 
+interface OnGenreClickListener {
+    fun onGenreClick(genreId: Int)
+}
+
 class SearchResultFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+
+    fun onGenreClick(genreId: Int) {
+        val data: List<Movie> = genreQuery(genreId)
+        showResult(data)
+    }
 
     private lateinit var searchResultRecyclerView: RecyclerView
 
@@ -55,16 +64,27 @@ class SearchResultFragment : Fragment() {
     private fun showResult(data: List<Movie>) {
         Log.d("showResult", "1")
         searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
-        searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data)
+        searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data) { movie ->
+            navigateToMovieDetail(movie)
+        }
         searchResultRecyclerView.visibility = View.VISIBLE
         binding.backButton.visibility = View.VISIBLE
+
+
         /*
         searchResultRecyclerView.adapter = MovieAdapter(data) { movie ->
             val bundle = Bundle().apply { putParcelable("movie", movie) }
             findNavController().navigate(R.id.action_searchResult_to_movieDetail, bundle)
-        }
+        */
+    }
 
-         */
+    private fun navigateToMovieDetail(movie: Movie) {
+        Log.d("searchResultFragment", "movie id: ${movie.id}")
+        val bundle = Bundle().apply {
+            putInt("movieId", movie.id)
+        }
+        findNavController().navigate(R.id.action_searchResult_to_movieDetail, bundle)
+        Log.d("searchResultFragment", "navigate success")
     }
 
     private fun titleQuery(titleWord: String): List<Movie>{

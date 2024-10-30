@@ -12,6 +12,7 @@ import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
 import androidx.navigation.fragment.findNavController
 import com.wafflestudio.waffleseminar2024.R
 
+
 class SearchOverviewFragment : Fragment(), OnGenreClickListener {
 
     private var _binding: FragmentSearchBinding? = null

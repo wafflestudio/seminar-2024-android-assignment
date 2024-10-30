@@ -60,5 +60,7 @@ dependencies {
     implementation(libs.androidx.room)
     implementation(libs.androidx.room.ktx)
     kapt(libs.androidx.room.compiler)
+    implementation(libs.gson)
     //implementation(libs.androidx.room.ksp)
+    implementation(kotlin("script-runtime"))
 }
