@@ -1,5 +1,7 @@
 package com.wafflestudio.waffleseminar2024.data
 
+import android.util.Log
+
 class MovieRepository(private val movieDao: MovieDao) {
 
     suspend fun insertMovie(movie: MovieEntity) {

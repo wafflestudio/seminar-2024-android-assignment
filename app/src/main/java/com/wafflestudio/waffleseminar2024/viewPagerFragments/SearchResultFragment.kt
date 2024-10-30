@@ -1,6 +1,7 @@
 package com.wafflestudio.waffleseminar2024.viewPagerFragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -17,12 +18,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wafflestudio.waffleseminar2024.R
-import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchInputBinding
-import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchOverviewBinding
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchResultBinding
 import com.wafflestudio.waffleseminar2024.searchResultRecyclerViewAdapter
 
-class SearchResultFragment: Fragment()  {
+interface OnMovieClickListener {
+    fun onMovieClick(movieId: Int)
+}
+
+class SearchResultFragment: Fragment(), OnMovieClickListener  {
+
+    override fun onMovieClick(movieId: Int) {
+        movieViewModel.loadMovieDetailById(movieId)
+        findNavController().navigate(R.id.result_to_detail)
+    }
 
     private val movieViewModel: MovieViewModel by activityViewModels {
         MovieViewModelFactory((requireActivity().application as MovieApplication).movieRepository)
@@ -44,7 +52,7 @@ class SearchResultFragment: Fragment()  {
         searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
 
         movieViewModel.movieList.observe(viewLifecycleOwner, Observer{ items ->
-            searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(items)
+            searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(items, this)
         })
 
         val searchLinearLayout: LinearLayout = binding.searchLinearLayout
@@ -54,6 +62,7 @@ class SearchResultFragment: Fragment()  {
         searchLinearLayout.setOnClickListener{
             findNavController().navigate(R.id.result_to_input)
         }
+
         searchEditText.setOnFocusChangeListener(object: OnFocusChangeListener {
             override fun onFocusChange(v: View?, hasFocus: Boolean) {
                 if(hasFocus){
@@ -61,6 +70,7 @@ class SearchResultFragment: Fragment()  {
                 }
             }
         })
+
         backButton.setOnClickListener{
             findNavController().navigate(R.id.result_to_overview)
         }

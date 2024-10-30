@@ -14,16 +14,16 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovie(entity: MovieEntity)
 
-    @Query("SELECT * FROM example_table")
+    @Query("SELECT * FROM example_table2")
     suspend fun getAllMovies(): List<MovieEntity>
 
-    @Query("SELECT * FROM example_table WHERE id = :id")
+    @Query("SELECT * FROM example_table2 WHERE id = :id")
     suspend fun getMovieById(id: Int): MovieEntity
 
-    @Query("SELECT * FROM example_table WHERE title LIKE '%' || :titleQuery || '%'")
+    @Query("SELECT * FROM example_table2 WHERE title LIKE '%' || :titleQuery || '%'")
     suspend fun getMovieByTitleQuery(titleQuery: String): List<MovieEntity>
 
-    @Query("SELECT * FROM example_table WHERE genre_ids LIKE '%' || :id || '%'")
+    @Query("SELECT * FROM example_table2 WHERE genres LIKE '%' || :id || '%'")
     suspend fun getMoviesByGenreId(id: Int): List<MovieEntity>
-}
 
+}

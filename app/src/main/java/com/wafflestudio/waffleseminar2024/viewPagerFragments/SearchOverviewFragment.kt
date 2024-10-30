@@ -62,7 +62,6 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         setGenreRecyclerView()
-        setSearchResultRecyclerView()
 
         val searchEditText: EditText = binding.searchEditText
         val searchButton: ImageView = binding.searchButton
@@ -70,17 +69,6 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
         val backButton: ImageView = binding.backButton
         val searchLinearLayout: LinearLayout = binding.searchLinearLayout
 
-//        searchEditText.setOnEditorActionListener { v, actionId, _ ->
-//            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-//                val data: List<MovieEntity> = titleQuery(searchEditText.text.toString())
-//                showResult(data)
-//                val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//                imm.hideSoftInputFromWindow(v.windowToken, 0)
-//                true
-//            } else {
-//                false
-//            }
-//        }
         navController = findNavController()
         searchLinearLayout.setOnClickListener{
             navController.navigate(R.id.clickSearchBar)
@@ -93,9 +81,6 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
             }
         })
 
-        backButton.setOnClickListener{
-            hideResult()
-        }
 
         profileButton.setOnClickListener{
             (activity as HomeActivity).viewPager.currentItem = 3
@@ -106,37 +91,6 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
         genreRecyclerView = binding.genreRecyclerView
         genreRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         genreRecyclerView.adapter = GenreRecyclerViewAdapter(GenreList, this)
-    }
-
-    private fun setSearchResultRecyclerView(){
-        searchResultRecyclerView = binding.searchResultRecyclerView
-    }
-
-//    private fun titleQuery(titleWord: String): List<MovieEntity>{
-//        return MovieData.filter{ movie ->
-//            movie.title.contains(titleWord, ignoreCase = true)
-//        }
-//    }
-//
-//    private fun genreQuery(genreId: Int): List<MovieEntity> {
-//        return MovieData.filter { movie ->
-//            movie.genre_ids.contains(genreId)
-//        }
-//    }
-
-    private fun showResult(data: List<MovieEntity>) {
-        searchResultRecyclerView = binding.searchResultRecyclerView
-        searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
-        searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data)
-        searchResultRecyclerView.visibility = View.VISIBLE
-        genreRecyclerView.visibility = View.INVISIBLE
-        binding.backButton.visibility = View.VISIBLE
-    }
-
-    private fun hideResult(){
-        searchResultRecyclerView.visibility = View.INVISIBLE
-        genreRecyclerView.visibility = View.VISIBLE
-        binding.backButton.visibility = View.INVISIBLE
     }
 
     override fun onDestroyView() {

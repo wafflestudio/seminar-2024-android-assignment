@@ -1,5 +1,6 @@
 package com.wafflestudio.waffleseminar2024.viewPagerFragments
 
+import android.graphics.Movie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -44,13 +45,15 @@ class MovieViewModel (private val repository: MovieRepository): ViewModel() {
     private val _genreList = MutableLiveData<List<Genre>>()
     val genreList: LiveData<List<Genre>> = _genreList
 
-    private fun loadAllMovies(){
-//        _movieList.value = repository.getAllMovies()
+    private val _movieDetail = MutableLiveData<MovieEntity?>()
+    val movieDetail: LiveData<MovieEntity?> = _movieDetail
+
+    fun loadMovieDetailById(id: Int){
+        viewModelScope.launch {
+            _movieDetail.value = repository.getMovieById(id)
+        }
     }
 
-    private fun loadMovieById(id: Int){
-//        _movieList.value = listOf(repository.getMovieById(id))
-    }
     fun loadMovieByGenre(genre: Int){
         viewModelScope.launch {
             val movies = repository.getMoviesByGenreId(genre)

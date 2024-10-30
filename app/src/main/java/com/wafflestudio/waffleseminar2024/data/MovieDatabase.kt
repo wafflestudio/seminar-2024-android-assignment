@@ -9,25 +9,34 @@ import androidx.room.TypeConverters
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class GenreIdConverters {
+data class Genre(val id: Int, val name: String)
+
+class GenreListConverter {
+
+    // List<Genre>를 String으로 변환하여 데이터베이스에 저장
     @TypeConverter
-    fun fromGenreIds(genreIds: List<Int>?): String? {
-        return genreIds?.joinToString(",")?.let { "[$it]" } // 리스트를 문자열로 변환하고 대괄호 추가
+    fun fromGenreList(genres: List<Genre>?): String? {
+        return genres?.joinToString(",") { genre -> "Genre(id=${genre.id}, name=${genre.name})" }
     }
 
+    // 저장된 String을 List<Genre>로 변환하여 불러오기
     @TypeConverter
-    fun toGenreIds(genreIdsString: String?): List<Int>? {
-        return genreIdsString?.removePrefix("[")?.removeSuffix("]") // 대괄호 제거
-            ?.split(",") // 문자열을 쉼표로 분리
-            ?.mapNotNull { it.trim().toIntOrNull() } // 각 요소를 Int로 변환, 실패하면 null 반환
+    fun toGenreList(genreString: String?): List<Genre>? {
+        return genreString
+            ?.split("Genre(")  // "Genre("를 기준으로 분리
+            ?.filter { it.isNotBlank() }
+            ?.mapNotNull { genrePart ->
+                val id = genrePart.substringAfter("id=").substringBefore(",").toIntOrNull()
+                val name = genrePart.substringAfter("name=").substringBefore(")")
+                if (id != null) Genre(id, name) else null
+            }
     }
 }
 
 @Database(entities = [MovieEntity::class], version = 1)
-@TypeConverters(GenreIdConverters::class)
+@TypeConverters(GenreListConverter::class)
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun MovieDao(): MovieDao
-
     companion object {
         @Volatile
         private var INSTANCE: MovieDatabase? = null
@@ -37,7 +46,7 @@ abstract class MovieDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MovieDatabase::class.java,
-                    "movie_database"
+                    "movie_database2"
                 )
                     .createFromAsset("database/prepopulated_db.db")
                     .build()
