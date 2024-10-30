@@ -1,5 +1,6 @@
 package com.wafflestudio.waffleseminar2024
 
+import Genre
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View

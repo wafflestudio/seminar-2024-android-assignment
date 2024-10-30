@@ -23,5 +23,7 @@ interface MovieDao {
     @Query("SELECT * FROM example_table WHERE title LIKE '%' || :titleQuery || '%'")
     suspend fun getMovieByTitleQuery(titleQuery: String): List<MovieEntity>
 
+    @Query("SELECT * FROM example_table WHERE genre_ids LIKE '%' || :id || '%'")
+    suspend fun getMoviesByGenreId(id: Int): List<MovieEntity>
 }
 

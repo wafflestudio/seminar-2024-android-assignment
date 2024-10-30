@@ -16,8 +16,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
-import com.wafflestudio.waffleseminar2024.Movie
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchInputBinding
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchOverviewBinding
@@ -51,6 +49,7 @@ class SearchResultFragment: Fragment()  {
 
         val searchLinearLayout: LinearLayout = binding.searchLinearLayout
         val searchEditText: EditText = binding.searchEditText
+        val backButton: ImageView = binding.backButton
 
         searchLinearLayout.setOnClickListener{
             findNavController().navigate(R.id.result_to_input)
@@ -62,5 +61,9 @@ class SearchResultFragment: Fragment()  {
                 }
             }
         })
+        backButton.setOnClickListener{
+            findNavController().navigate(R.id.result_to_overview)
+        }
+
     }
 }

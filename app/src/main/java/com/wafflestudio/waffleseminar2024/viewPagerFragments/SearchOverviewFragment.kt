@@ -1,6 +1,7 @@
 package com.wafflestudio.waffleseminar2024.viewPagerFragments
 
 
+import GenreList
 import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
@@ -14,15 +15,13 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.wafflestudio.waffleseminar2024.GenreList
 import com.wafflestudio.waffleseminar2024.GenreRecyclerViewAdapter
 import com.wafflestudio.waffleseminar2024.HomeActivity
-import com.wafflestudio.waffleseminar2024.Movie
-import com.wafflestudio.waffleseminar2024.MovieData
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.data.MovieEntity
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchOverviewBinding
@@ -34,8 +33,13 @@ interface OnGenreClickListener {
 
 class SearchOverviewFragment : Fragment(), OnGenreClickListener {
 
-    override fun onGenreClick(genreId: Int) {
+    private val movieViewModel: MovieViewModel by activityViewModels {
+        MovieViewModelFactory((requireActivity().application as MovieApplication).movieRepository)
+    }
 
+    override fun onGenreClick(genreId: Int) {
+        movieViewModel.loadMovieByGenre(genreId)
+        findNavController().navigate(R.id.overview_to_result)
     }
 
     private var _binding: FragmentSearchOverviewBinding? = null
@@ -100,8 +104,8 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
 
     private fun setGenreRecyclerView(){
         genreRecyclerView = binding.genreRecyclerView
-//        genreRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-//        genreRecyclerView.adapter = GenreRecyclerViewAdapter(GenreList, this)
+        genreRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        genreRecyclerView.adapter = GenreRecyclerViewAdapter(GenreList, this)
     }
 
     private fun setSearchResultRecyclerView(){

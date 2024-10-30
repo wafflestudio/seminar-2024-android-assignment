@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.wafflestudio.waffleseminar2024.Movie
 import com.wafflestudio.waffleseminar2024.data.MovieEntity
 import com.wafflestudio.waffleseminar2024.data.MovieRepository
 import kotlinx.coroutines.launch
@@ -52,7 +51,12 @@ class MovieViewModel (private val repository: MovieRepository): ViewModel() {
     private fun loadMovieById(id: Int){
 //        _movieList.value = listOf(repository.getMovieById(id))
     }
-
+    fun loadMovieByGenre(genre: Int){
+        viewModelScope.launch {
+            val movies = repository.getMoviesByGenreId(genre)
+            _movieList.value = movies
+        }
+    }
     fun loadMovieByTitleQuery(titleQuery: String){
         viewModelScope.launch {
             val movies = repository.getMovieByTitleQuery(titleQuery)

@@ -49,6 +49,9 @@
         android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchResultFragment"
         android:label="SearchResultFragment">
         <action
+            android:id="@+id/result_to_overview"
+            app:destination="@id/searchOverviewFragment"/>
+        <action
             android:id="@+id/result_to_input"
             app:destination="@id/searchInputFragment"/>
     </fragment>

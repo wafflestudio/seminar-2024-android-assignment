@@ -18,4 +18,8 @@ class MovieRepository(private val movieDao: MovieDao) {
         return movieDao.getMovieByTitleQuery(titleQuery)
     }
 
+    suspend fun getMoviesByGenreId(id: Int): List<MovieEntity>{
+        return movieDao.getMoviesByGenreId(id)
+    }
+
 }

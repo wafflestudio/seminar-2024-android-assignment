@@ -11,15 +11,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.wafflestudio.waffleseminar2024.GenreList
-import com.wafflestudio.waffleseminar2024.GenreRecyclerViewAdapter
-import com.wafflestudio.waffleseminar2024.HomeActivity
-import com.wafflestudio.waffleseminar2024.Movie
-import com.wafflestudio.waffleseminar2024.MovieData
-import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchOverviewBinding
 import com.wafflestudio.waffleseminar2024.databinding.PageSearchBinding
 import com.wafflestudio.waffleseminar2024.searchResultRecyclerViewAdapter
 
