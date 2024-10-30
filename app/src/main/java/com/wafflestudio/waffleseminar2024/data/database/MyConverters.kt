@@ -1,6 +1,9 @@
 package com.wafflestudio.waffleseminar2024.data.database
 
 import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.wafflestudio.waffleseminar2024.Genre
 
 class MyConverters {
     @TypeConverter
@@ -20,5 +23,26 @@ class MyConverters {
             }
         }
         return result
+    }
+
+    @TypeConverter
+    fun fromGenreList(genres: List<Genre>): String {
+        return Gson().toJson(genres)
+    }
+
+    @TypeConverter
+    fun toGenreList(value: String): List<Genre> {
+        val type = object : TypeToken<List<Genre>>() {}.type
+        return Gson().fromJson(value, type)
+    }
+
+    @TypeConverter
+    fun stringToBoolean(value: String?): Boolean? {
+        return value?.toBoolean()
+    }
+
+    @TypeConverter
+    fun booleanToString(value: Boolean?): String? {
+        return value?.toString()
     }
 }

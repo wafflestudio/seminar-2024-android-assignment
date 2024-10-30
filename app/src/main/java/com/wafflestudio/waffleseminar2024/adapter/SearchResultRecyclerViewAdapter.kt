@@ -23,7 +23,7 @@ class searchResultRecyclerViewAdapter(private val movieList: List<Movie>) : Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = movieList[position]
-        val imageUrl = "https://image.tmdb.org/t/p/w185" + currentItem.poster_path
+        val imageUrl = "https://image.tmdb.org/t/p/original" + currentItem.poster_path
         holder.imageView.load(imageUrl)
     }
 

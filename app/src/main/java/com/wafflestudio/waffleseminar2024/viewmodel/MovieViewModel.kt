@@ -35,17 +35,18 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
                 repository.getMoviesByTitle(titleWord).map { entity ->
                     Movie(
                         id = entity.id ?: 0,
-                        backdrop_path = entity.backdrop_path ?: "",
-                        genre_ids = entity.genre_ids ?: emptyList(),
-                        original_language = entity.original_language ?: "",
+                        title = entity.title ?: "",
                         original_title = entity.original_title ?: "",
+                        backdrop_path = entity.backdrop_path ?: "",
                         overview = entity.overview ?: "",
-                        popularity = entity.popularity ?: 0f,
                         poster_path = entity.poster_path ?: "",
                         release_date = entity.release_date ?: "",
-                        title = entity.title ?: "",
-                        vote_average = entity.vote_average ?: 0f,
-                        vote_count = entity.vote_count ?: 0
+                        vote_average = entity.vote_average ?: 0.0,
+                        runtime = entity.runtime,
+                        status = entity.status ?: "",
+                        genres = entity.genres,
+                        budget = entity.budget ?: 0,
+                        revenue = entity.revenue ?: 0
                     )
                 }
             }
@@ -60,17 +61,18 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
                 repository.getMoviesByGenre(genreId).map { entity ->
                     Movie(
                         id = entity.id ?: 0,
-                        backdrop_path = entity.backdrop_path ?: "",
-                        genre_ids = entity.genre_ids ?: emptyList(),
-                        original_language = entity.original_language ?: "",
+                        title = entity.title ?: "",
                         original_title = entity.original_title ?: "",
+                        backdrop_path = entity.backdrop_path ?: "",
                         overview = entity.overview ?: "",
-                        popularity = entity.popularity ?: 0f,
                         poster_path = entity.poster_path ?: "",
                         release_date = entity.release_date ?: "",
-                        title = entity.title ?: "",
-                        vote_average = entity.vote_average ?: 0f,
-                        vote_count = entity.vote_count ?: 0
+                        vote_average = entity.vote_average ?: 0.0,
+                        runtime = entity.runtime,
+                        status = entity.status ?: "",
+                        genres = entity.genres,
+                        budget = entity.budget ?: 0,
+                        revenue = entity.revenue ?: 0
                     )
                 }
             }

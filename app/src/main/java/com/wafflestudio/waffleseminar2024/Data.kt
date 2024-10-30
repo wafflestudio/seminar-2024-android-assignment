@@ -1,6 +1,8 @@
 package com.wafflestudio.waffleseminar2024
 
 import android.os.Parcelable
+import androidx.room.Embedded
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -8,20 +10,19 @@ import kotlinx.serialization.json.Json
 @Serializable
 @Parcelize
 data class Movie(
-    val adult: Boolean = false,
-    val backdrop_path: String? = "",
-    val genre_ids: List<Int> = listOf(1, 0),
-    val id: Int = 0,
-    val original_language: String = "en",
-    val original_title: String = "",
-    val overview: String = "",
-    val popularity: Float = 0.0f,
-    val poster_path: String = "",
-    val release_date: String = "",
-    val title: String = "",
-    val video: Boolean = true,
-    val vote_average: Float = 0.0f,
-    val vote_count: Int = 0
+    @PrimaryKey val id: Int,
+    val title: String,
+    val original_title: String,
+    val backdrop_path: String?,
+    val budget: Int,
+    val overview: String?,
+    val poster_path: String?,
+    val release_date: String?,
+    val revenue: Int,
+    val runtime: Int?,
+    val status: String?,
+    val vote_average: Double,
+    val genres: List<Genre>?
 ) : Parcelable
 
 
@@ -108,10 +109,12 @@ const val GenreListString = """
 
 
 @Serializable
+@Parcelize
+
 class Genre(
     val id: Int,
     val name: String,
-)
+) : Parcelable
 
 fun parseGenreList(jsonString: String): List<Genre> {
     return Json.decodeFromString(jsonString)
