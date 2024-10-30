@@ -54,7 +54,10 @@ class SearchInputFragment : Fragment() {
         val bundle = Bundle().apply {
             putString("searchQuery", encodedQuery)
         }
-        findNavController().navigate(R.id.action_searchInput_to_searchResult, bundle)
+
+        val navController = childFragmentManager.findFragmentById(R.id.nav_host_fragment)
+            ?.findNavController()
+        navController?.navigate(R.id.action_searchInput_to_searchResult, bundle)
     }
 
     override fun onDestroyView() {

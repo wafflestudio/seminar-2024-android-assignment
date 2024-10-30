@@ -23,7 +23,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val slackWork
         return when (position) {
             0 -> GameFragment()
             1 -> AppFragment()
-            2 -> SearchFragment()
+            2 -> SearchOverviewFragment()
             3 -> {
                 val fragment = UserInformationFragment()
                 val bundle = Bundle()

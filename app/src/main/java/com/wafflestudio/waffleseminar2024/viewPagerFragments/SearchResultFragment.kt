@@ -1,5 +1,6 @@
 package com.wafflestudio.waffleseminar2024.viewPagerFragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -34,6 +35,7 @@ class SearchResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.genreRecyclerView.visibility = View.GONE
+        Log.d("SearchResultFragment", "genreRecyclerView visibility: ${getVisibilityString(binding.genreRecyclerView.visibility)}")
         binding.searchResultRecyclerView.visibility = View.VISIBLE
 
         searchResultRecyclerView = binding.searchResultRecyclerView
@@ -49,6 +51,8 @@ class SearchResultFragment : Fragment() {
             titleQuery(searchQuery ?: "")
         }
 
+        Log.d("SearchResultFragment", "data size: ${data.size}")
+
         showResult(data)
     }
 
@@ -56,8 +60,11 @@ class SearchResultFragment : Fragment() {
         Log.d("showResult", "1")
         searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data)
-        searchResultRecyclerView.visibility = View.VISIBLE
         binding.backButton.visibility = View.VISIBLE
+
+        Log.d("showResult", "searchResultRecyclerView visibility: ${getVisibilityString(searchResultRecyclerView.visibility)}")
+        Log.d("showResult", "genreRecyclerView visibility: ${getVisibilityString(binding.genreRecyclerView.visibility)}")
+
         /*
         searchResultRecyclerView.adapter = MovieAdapter(data) { movie ->
             val bundle = Bundle().apply { putParcelable("movie", movie) }
@@ -87,5 +94,14 @@ class SearchResultFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getVisibilityString(visibility: Int): String {
+        return when (visibility) {
+            View.VISIBLE -> "VISIBLE"
+            View.INVISIBLE -> "INVISIBLE"
+            View.GONE -> "GONE"
+            else -> "UNKNOWN"
+        }
     }
 }
