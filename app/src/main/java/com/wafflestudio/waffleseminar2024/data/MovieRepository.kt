@@ -2,16 +2,20 @@ package com.wafflestudio.waffleseminar2024.data
 
 class MovieRepository(private val movieDao: MovieDao) {
 
-    fun insertMovie(movie: MovieEntity) {
+    suspend fun insertMovie(movie: MovieEntity) {
         movieDao.insertMovie(movie)
     }
 
-    fun getAllMovies(): List<MovieEntity> {
+    suspend fun getAllMovies(): List<MovieEntity> {
         return movieDao.getAllMovies()
     }
 
-    fun getMovieById(id: Int): MovieEntity {
+    suspend fun getMovieById(id: Int): MovieEntity {
         return movieDao.getMovieById(id)
+    }
+
+    suspend fun getMovieByTitleQuery(titleQuery: String): List<MovieEntity>{
+        return movieDao.getMovieByTitleQuery(titleQuery)
     }
 
 }

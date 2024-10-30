@@ -3,10 +3,12 @@ package com.wafflestudio.waffleseminar2024.data
 import androidx.databinding.adapters.Converters
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 
+
 @Entity(tableName = "example_table")
-@TypeConverters(Converters::class)
+@TypeConverters(GenreIdConverters::class)
 data class MovieEntity(
     @PrimaryKey val id: Int?,
     val backdrop_path: String?,

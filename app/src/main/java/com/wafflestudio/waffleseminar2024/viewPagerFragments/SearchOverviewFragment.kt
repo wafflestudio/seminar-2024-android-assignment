@@ -3,6 +3,7 @@ package com.wafflestudio.waffleseminar2024.viewPagerFragments
 
 import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -23,6 +24,7 @@ import com.wafflestudio.waffleseminar2024.HomeActivity
 import com.wafflestudio.waffleseminar2024.Movie
 import com.wafflestudio.waffleseminar2024.MovieData
 import com.wafflestudio.waffleseminar2024.R
+import com.wafflestudio.waffleseminar2024.data.MovieEntity
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchOverviewBinding
 import com.wafflestudio.waffleseminar2024.searchResultRecyclerViewAdapter
 
@@ -33,8 +35,7 @@ interface OnGenreClickListener {
 class SearchOverviewFragment : Fragment(), OnGenreClickListener {
 
     override fun onGenreClick(genreId: Int) {
-        val data: List<Movie> = genreQuery(genreId)
-        showResult(data)
+
     }
 
     private var _binding: FragmentSearchOverviewBinding? = null
@@ -65,17 +66,17 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
         val backButton: ImageView = binding.backButton
         val searchLinearLayout: LinearLayout = binding.searchLinearLayout
 
-        searchEditText.setOnEditorActionListener { v, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                val data: List<Movie> = titleQuery(searchEditText.text.toString())
-                showResult(data)
-                val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(v.windowToken, 0)
-                true
-            } else {
-                false
-            }
-        }
+//        searchEditText.setOnEditorActionListener { v, actionId, _ ->
+//            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+//                val data: List<MovieEntity> = titleQuery(searchEditText.text.toString())
+//                showResult(data)
+//                val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//                imm.hideSoftInputFromWindow(v.windowToken, 0)
+//                true
+//            } else {
+//                false
+//            }
+//        }
         navController = findNavController()
         searchLinearLayout.setOnClickListener{
             navController.navigate(R.id.clickSearchBar)
@@ -99,27 +100,28 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
 
     private fun setGenreRecyclerView(){
         genreRecyclerView = binding.genreRecyclerView
-        genreRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        genreRecyclerView.adapter = GenreRecyclerViewAdapter(GenreList, this)
+//        genreRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+//        genreRecyclerView.adapter = GenreRecyclerViewAdapter(GenreList, this)
     }
 
     private fun setSearchResultRecyclerView(){
         searchResultRecyclerView = binding.searchResultRecyclerView
     }
 
-    private fun titleQuery(titleWord: String): List<Movie>{
-        return MovieData.filter{ movie ->
-            movie.title.contains(titleWord, ignoreCase = true)
-        }
-    }
+//    private fun titleQuery(titleWord: String): List<MovieEntity>{
+//        return MovieData.filter{ movie ->
+//            movie.title.contains(titleWord, ignoreCase = true)
+//        }
+//    }
+//
+//    private fun genreQuery(genreId: Int): List<MovieEntity> {
+//        return MovieData.filter { movie ->
+//            movie.genre_ids.contains(genreId)
+//        }
+//    }
 
-    private fun genreQuery(genreId: Int): List<Movie> {
-        return MovieData.filter { movie ->
-            movie.genre_ids.contains(genreId)
-        }
-    }
-
-    private fun showResult(data: List<Movie>) {
+    private fun showResult(data: List<MovieEntity>) {
+        searchResultRecyclerView = binding.searchResultRecyclerView
         searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data)
         searchResultRecyclerView.visibility = View.VISIBLE
