@@ -29,8 +29,11 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*
         binding.genreRecyclerView.visibility = View.VISIBLE
         binding.searchResultRecyclerView.visibility = View.GONE
+
+         */
 
         setGenreRecyclerView()
 
@@ -43,9 +46,6 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
              */
             findNavController().navigate(R.id.action_searchOverview_to_searchInput)
         }
-
-
-
     }
 
     private fun setGenreRecyclerView() {
