@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 
 @Entity(tableName = "example_table")
-@TypeConverters(Converters::class)
+@TypeConverters(MyConverters::class)
 data class MyEntity(
     @PrimaryKey val id: Int?,
     val backdrop_path: String?,

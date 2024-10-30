@@ -18,6 +18,7 @@ navigation_safeargs = "2.5.3"
 roomCommon = "2.6.1"
 gson = "2.8.8"
 roomKtx = "2.6.1"
+room = "2.6.1"
 adapters = "3.2.0-alpha11"
 
 [libraries]
@@ -39,6 +40,7 @@ androidx-room-common = { group = "androidx.room", name = "room-common", version.
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 androidx-adapters = { group = "androidx.databinding", name = "adapters", version.ref = "adapters" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

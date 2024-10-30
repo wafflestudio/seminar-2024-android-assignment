@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,9 +17,11 @@ import com.wafflestudio.waffleseminar2024.GenreList
 import com.wafflestudio.waffleseminar2024.adapter.GenreRecyclerViewAdapter
 import com.wafflestudio.waffleseminar2024.HomeActivity
 import com.wafflestudio.waffleseminar2024.Movie
-import com.wafflestudio.waffleseminar2024.MovieData
+//import com.wafflestudio.waffleseminar2024.MovieData
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchoverviewBinding
+import com.wafflestudio.waffleseminar2024.viewmodel.MovieViewModel
+import com.wafflestudio.waffleseminar2024.viewmodel.MovieViewModelFactory
 
 interface OnGenreClickListener {
     fun onGenreClick(genreId: Int)
@@ -27,15 +30,12 @@ interface OnGenreClickListener {
 class SearchOverviewFragment : Fragment(), OnGenreClickListener {
     private lateinit var navController: NavController
 
-    override fun onGenreClick(genreId: Int) {
-        val data: List<Movie> = genreQuery(genreId)
-        showResult(data)
-    }
-
     private var _binding: FragmentSearchoverviewBinding? = null
     private val binding get() = _binding!!
 
     lateinit var genreRecyclerView: RecyclerView
+
+    private val movieViewModel: MovieViewModel by viewModels { MovieViewModelFactory(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,9 +79,11 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
     }
 
 
-    private fun genreQuery(genreId: Int): List<Movie> {
-        return MovieData.filter { movie ->
-            movie.genre_ids.contains(genreId)
+    override fun onGenreClick(genreId: Int) {
+        movieViewModel.genreQuery(genreId)
+
+        movieViewModel.searchResults.observe(viewLifecycleOwner) { data ->
+            showResult(data)
         }
     }
 
