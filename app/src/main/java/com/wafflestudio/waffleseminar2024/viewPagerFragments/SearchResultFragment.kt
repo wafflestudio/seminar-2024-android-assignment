@@ -37,11 +37,18 @@ class SearchResultFragment : Fragment() {
         binding.searchResultRecyclerView.visibility = View.VISIBLE
 
         searchResultRecyclerView = binding.searchResultRecyclerView
-        val genreId = arguments?.getInt("genreId")
+        val genreId = arguments?.getInt("genreId") ?: 0
         val searchQuery = arguments?.getString("searchQuery")
         Log.d("SearchResultFragment", "genreId: $genreId, searchQuery: $searchQuery")
-        val data: List<Movie> = genreId?.let { genreQuery(it) } ?: titleQuery(searchQuery ?: "")
-        Log.d("SearchResultFragment", "data size: ${data.size}")
+
+        val data: List<Movie> = if (genreId != 0) {
+            Log.d("SearchResultFragment", "Executing genreQuery with genreId: $genreId")
+            genreQuery(genreId)
+        } else {
+            Log.d("SearchResultFragment", "Executing titleQuery with searchQuery: $searchQuery")
+            titleQuery(searchQuery ?: "")
+        }
+
         showResult(data)
     }
 
@@ -49,7 +56,7 @@ class SearchResultFragment : Fragment() {
         Log.d("showResult", "1")
         searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data)
-        //searchResultRecyclerView.visibility = View.VISIBLE
+        searchResultRecyclerView.visibility = View.VISIBLE
         binding.backButton.visibility = View.VISIBLE
         /*
         searchResultRecyclerView.adapter = MovieAdapter(data) { movie ->
@@ -61,12 +68,17 @@ class SearchResultFragment : Fragment() {
     }
 
     private fun titleQuery(titleWord: String): List<Movie>{
-        return MovieData.filter{ movie ->
+        Log.d("titleQuery", "Filtering for titleWord: $titleWord")
+        val filteredMovies = MovieData.filter{ movie ->
             movie.title.contains(titleWord, ignoreCase = true)
         }
+        Log.d("titleQuery", "Filtered results count: ${filteredMovies.size}")
+
+        return filteredMovies
     }
 
     private fun genreQuery(genreId: Int): List<Movie> {
+        Log.d("genreQuery", "start")
         return MovieData.filter { movie ->
             movie.genre_ids.contains(genreId)
         }

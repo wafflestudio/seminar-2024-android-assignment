@@ -12,6 +12,9 @@ android {
         buildFeatures {
             viewBinding = true
         }
+        compileOptions {
+            encoding = "UTF-8"
+        }
     }
     defaultConfig {
         applicationId = "com.wafflestudio.waffleseminar2024"

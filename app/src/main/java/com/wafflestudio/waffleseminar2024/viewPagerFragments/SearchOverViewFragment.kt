@@ -34,10 +34,16 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
         setGenreRecyclerView()
 
         binding.searchEditText.setOnClickListener {
+            /*
             val navController = childFragmentManager.findFragmentById(R.id.nav_host_fragment)
                 ?.findNavController()
             navController?.navigate(R.id.action_searchOverview_to_searchInput)
+
+             */
+            findNavController().navigate(R.id.action_searchOverview_to_searchInput)
         }
+
+
 
     }
 
