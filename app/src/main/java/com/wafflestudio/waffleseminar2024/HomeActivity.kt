@@ -30,8 +30,6 @@ class HomeActivity: AppCompatActivity() {
 
         setViewPager(slackWorkspaceUrl)
         setTabLayout()
-
-
     }
 
     private fun setViewPager(slackWorkspaceUrl: String){
@@ -62,18 +60,5 @@ class HomeActivity: AppCompatActivity() {
             }
         }.attach()
     }
-
-    /*
-    viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                if (position == 2) {
-                    homeBinding.navHostFragment.visibility = View.VISIBLE
-                } else {
-                    homeBinding.navHostFragment.visibility = View.GONE
-                }
-            }
-        })
-     */
 
 }

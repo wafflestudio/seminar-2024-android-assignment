@@ -11,8 +11,6 @@ import com.wafflestudio.waffleseminar2024.GenreRecyclerViewAdapter
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
 import androidx.navigation.fragment.findNavController
 import com.wafflestudio.waffleseminar2024.R
-import android.util.Log
-import androidx.navigation.fragment.NavHostFragment
 
 class SearchOverviewFragment : Fragment(), OnGenreClickListener {
 
@@ -37,14 +35,11 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
 
         binding.searchEditText.setOnClickListener {
             /*
-            val navHostFragment = requireActivity().supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            val navController = navHostFragment.navController
-
+            val navController = childFragmentManager.findFragmentById(R.id.nav_host_fragment)
+                ?.findNavController()
             navController?.navigate(R.id.action_searchOverview_to_searchInput)
 
              */
-
             findNavController().navigate(R.id.action_searchOverview_to_searchInput)
         }
 
@@ -61,14 +56,7 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
         val bundle = Bundle().apply {
             putInt("genreId", genreId)
         }
-        val navHostFragment = requireActivity().supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        if (navController == null) {
-            Log.d("SearchOverView", "nav host not found")
-        }
-        navController?.navigate(R.id.action_searchOverview_to_searchResult, bundle)
+        findNavController().navigate(R.id.action_searchOverview_to_searchResult, bundle)
     }
 
     override fun onDestroyView() {

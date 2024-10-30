@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("plugin.serialization") version "2.0.21"
+    id("kotlin-kapt")
 }
 
 android {
@@ -56,4 +57,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.room)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+    //implementation(libs.androidx.room.ksp)
 }
