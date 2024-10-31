@@ -7,20 +7,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wafflestudio.waffleseminar2024.databinding.ActivityHomeBinding
+import com.wafflestudio.waffleseminar2024.viewPagerFragments.MovieApplication
+import com.wafflestudio.waffleseminar2024.viewPagerFragments.MovieViewModel
+import com.wafflestudio.waffleseminar2024.viewPagerFragments.MovieViewModelFactory
 
 
 class HomeActivity: AppCompatActivity() {
     private lateinit var homeBinding: ActivityHomeBinding;
     lateinit var viewPager: ViewPager2
-
+    private val movieViewModel: MovieViewModel by viewModels {
+        MovieViewModelFactory((application as MovieApplication).movieRepository)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeBinding = ActivityHomeBinding.inflate(layoutInflater)
@@ -35,6 +43,7 @@ class HomeActivity: AppCompatActivity() {
     private fun setViewPager(slackWorkspaceUrl: String){
         viewPager = homeBinding.viewPager
         viewPager.adapter = ViewPagerAdapter(this, slackWorkspaceUrl)
+
     }
 
     private fun setTabLayout(){
