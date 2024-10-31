@@ -74,7 +74,10 @@ class SearchResultFragment : Fragment() {
 
     private fun showResult(data: List<Movie>) {
         searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
-        searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data)
+        searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data) { movie ->
+            val action = SearchResultFragmentDirections.actionToMovieDetailFragment(movie.id)
+            navController.navigate(action)
+        }
     }
 
     override fun onDestroyView() {

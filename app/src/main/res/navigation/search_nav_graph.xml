@@ -48,5 +48,9 @@
     <fragment
         android:id="@+id/MovieDetailFragment"
         android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.MovieDetailFragment"
-        android:label="Movie Detail" />
+        android:label="Movie Detail">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

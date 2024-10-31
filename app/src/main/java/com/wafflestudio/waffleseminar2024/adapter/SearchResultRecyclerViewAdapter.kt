@@ -9,7 +9,10 @@ import coil.load
 import com.wafflestudio.waffleseminar2024.Movie
 import com.wafflestudio.waffleseminar2024.R
 
-class searchResultRecyclerViewAdapter(private val movieList: List<Movie>) : RecyclerView.Adapter<searchResultRecyclerViewAdapter.ViewHolder>() {
+class searchResultRecyclerViewAdapter(
+    private val movieList: List<Movie>,
+    private val onMovieClick: (Movie) -> Unit
+) : RecyclerView.Adapter<searchResultRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.itemImageView)
@@ -25,6 +28,7 @@ class searchResultRecyclerViewAdapter(private val movieList: List<Movie>) : Recy
         val currentItem = movieList[position]
         val imageUrl = "https://image.tmdb.org/t/p/original" + currentItem.poster_path
         holder.imageView.load(imageUrl)
+        holder.itemView.setOnClickListener {onMovieClick(currentItem)}
     }
 
     override fun getItemCount(): Int {

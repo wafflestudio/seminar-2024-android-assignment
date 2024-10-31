@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
+import coil.load
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.databinding.FragmentMovieDetailBinding
 import com.wafflestudio.waffleseminar2024.viewmodel.MovieViewModel
@@ -36,7 +37,9 @@ class MovieDetailFragment : Fragment() {
         viewModel.fetchMovieDetails(movieId)
         viewModel.movie.observe(viewLifecycleOwner) { movie ->
             movie?.let {
-                view.findViewById<TextView>(R.id.movieTitle).text = it.title
+                binding.movieTitle.text = it.title
+                binding.backdropImg.load("https://image.tmdb.org/t/p/original" + it.backdrop_path)
+                binding.posterImg.load("https://image.tmdb.org/t/p/original" + it.poster_path)
             }
         }
     }
