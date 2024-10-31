@@ -64,7 +64,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         val ratingBar = view.findViewById<RatingBar>(R.id.ratingBar)
         val ratingTextView = view.findViewById<TextView>(R.id.ratingTextView)
 
-        val genresContainer = view.findViewById<LinearLayout>(R.id.genresContainer)
         val budgetTextView = view.findViewById<TextView>(R.id.budgetTextView)
         val revenueTextView = view.findViewById<TextView>(R.id.revenueTextView)
         val originalTitleView = view.findViewById<TextView>(R.id.originalTitleView)
@@ -72,6 +71,35 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         posterImageView.load("https://image.tmdb.org/t/p/w500${movie.poster_path}")
         backdropImageView.load("https://image.tmdb.org/t/p/w500${movie.backdrop_path}")
 
+        val runtimeTextView = view.findViewById<TextView>(R.id.runtimeTextView)
+        val yearTextView = view.findViewById<TextView>(R.id.yearTextView)
+        val ageRatingTextView = view.findViewById<TextView>(R.id.ageRatingTextView)
+        // 시간, 연도, 연령대 설정
+        val runtimeInMinutes = movie.runtime ?: 0
+        val hours = runtimeInMinutes / 60
+        val minutes = runtimeInMinutes % 60
+        runtimeTextView.text = "${hours}h ${minutes}m"
+        yearTextView.text = movie.release_date?.take(4) ?: "N/A"  // 연도만 표시
+        // 특정 장르에 따른 연령대 표시 설정
+        val restrictedGenres = listOf("thriller", "horror", "action")
+        val ageRating = if (movie.genres?.any { genre -> genre.name.lowercase() in restrictedGenres } == true) {
+            "R18+"  // 제한 장르가 포함된 경우 R18+
+        } else {
+            "All ages"  // 그 외의 경우 All ages
+        }
+
+        // 연령대 텍스트 및 색상 설정
+        ageRatingTextView.apply {
+            text = ageRating
+            setTextColor(
+                if (ageRating == "R18+") {
+                    ContextCompat.getColor(context, android.R.color.holo_red_light)
+                } else {
+                    ContextCompat.getColor(context, android.R.color.white)
+                }
+            )
+            visibility = View.VISIBLE
+        }
 
         // 제목, 줄거리, 별점 설정
         titleTextView.text = movie.title ?: "No Title"
@@ -83,29 +111,29 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
 
 
+        val genresContainer = view.findViewById<LinearLayout>(R.id.genresContainer)
         genresContainer.removeAllViews()
-        val genreNames = movie.genres?.split("Genre(")?.mapNotNull { extractGenreName(it) } ?: emptyList()
 
-        genreNames.forEach { genreName ->
+        genresContainer.removeAllViews()
+
+        movie.genres?.forEach { genre ->
             val genreView = TextView(requireContext()).apply {
-                text = genreName  // 추출한 name만 사용
-                setPadding(16, 8, 16, 8)  // 내부 여백 설정
-                setBackgroundResource(R.drawable.genre_background)  // 배경 적용
-                setTextColor(ContextCompat.getColor(context, android.R.color.black))  // 텍스트 색상
+                text = genre.name  // 직접 name 필드를 사용
+                setPadding(16, 8, 16, 8)
+                setBackgroundResource(R.drawable.genre_background)
+                setTextColor(ContextCompat.getColor(context, android.R.color.black))
             }
 
-            // 마진 설정
             val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                setMargins(8, 16, 8, 16)  // 왼쪽, 위, 오른쪽, 아래 마진 설정
+                setMargins(8, 16, 8, 16)
             }
 
             genreView.layoutParams = params
             genresContainer.addView(genreView)
         }
-
 
 
         // Budget과 Revenue 통화 형식 설정
@@ -114,6 +142,8 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         revenueTextView.text = format.format(movie.revenue)
         originalTitleView.text = movie.original_title ?: "No original title"
         statusView.text = movie.status ?: "No status"
+
+
     }
 }
 
@@ -123,3 +153,4 @@ private fun extractGenreName(genreString: String): String? {
     val matchResult = regex.find(genreString)
     return matchResult?.groupValues?.get(1)?.trim()  // 일치하는 그룹의 값을 반환
 }
+

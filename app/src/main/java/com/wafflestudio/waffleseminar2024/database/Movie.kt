@@ -27,7 +27,7 @@ data class MovieDetail(
     @PrimaryKey val id: Int?,  // PrimaryKey는 nullable 허용
     val backdrop_path: String?,
     val budget: Int?,
-    val genres: String?,  // JSON 문자열로 저장
+    val genres: List<Genre>?,  // JSON 문자열로 저장
     val homepage: String?,
     val original_language: String?,
     val original_title: String?,

@@ -87,3 +87,27 @@ class Converters {
         return gson.fromJson(data, listType)
     }
 }
+
+
+class Converters2 {
+    private val gson = Gson()
+
+    @TypeConverter
+    fun fromListGenre(value: List<Genre>?): String {
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun toListGenre(value: String): List<Genre> {
+        val jsonFormValue = value
+            .replace("Genre", "")
+            .replace("id", "\"id\"")
+            .replace("name", "\"name\"")
+            .replace("(", "{")
+            .replace(")", "}")
+            .replace("=", ":")
+            .replace(" ","")
+        val listType = object : TypeToken<List<Genre>>() {}.type
+        return gson.fromJson(jsonFormValue, listType)
+    }
+}

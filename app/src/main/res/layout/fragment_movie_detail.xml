@@ -106,6 +106,44 @@
                                 android:theme="@style/CustomRatingBar"
                                 android:rating="0.0" />
                     </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center_vertical">
+
+                        <!-- 시간 표시 -->
+                        <TextView
+                                android:id="@+id/runtimeTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="120 min"
+                                android:textSize="14sp"
+                                android:textColor="@android:color/white"
+                                android:layout_marginEnd="8dp" />
+
+                        <!-- 연도 표시 -->
+                        <TextView
+                                android:id="@+id/yearTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2023"
+                                android:textSize="14sp"
+                                android:textColor="@android:color/white"
+                                android:layout_marginEnd="8dp" />
+
+                        <!-- 연령대 표시 -->
+                        <TextView
+                                android:id="@+id/ageRatingTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R18+"
+                                android:textSize="14sp"
+                                android:textColor="@android:color/holo_red_light"
+                                 android:visibility="gone" /> <!-- 기본으로 숨김 -->
+                    </LinearLayout>
+
 
                 </LinearLayout>
             </LinearLayout>
