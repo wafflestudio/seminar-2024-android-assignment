@@ -45,7 +45,6 @@ class SearchOverviewFragment : Fragment(), OnGenreClickListener {
     private var _binding: FragmentSearchOverviewBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var searchResultRecyclerView: RecyclerView
     lateinit var genreRecyclerView: RecyclerView
 
     private lateinit var navController: NavController

@@ -62,5 +62,9 @@
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.MovieDetailFragment"
-        android:label="MovieDetailFragment"/>
+        android:label="MovieDetailFragment">
+        <action
+            android:id="@+id/detail_to_result"
+            app:destination="@id/searchResultFragment"/>
+    </fragment>
 </navigation>
