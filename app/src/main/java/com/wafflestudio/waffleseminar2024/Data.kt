@@ -25,6 +25,24 @@ data class Movie(
     val genres: List<Genre>?
 ) : Parcelable
 
+data class Company(
+    val id: Int,
+    val logoPath: String?,
+    val name: String,
+    val originCountry: String?
+)
+
+data class Country(
+    val iso: String,
+    val name: String
+)
+
+data class Language(
+    val iso_639_1: String,
+    val name: String,
+    val english_name: String
+)
+
 
 const val GenreListString = """
     [

@@ -5,7 +5,10 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.wafflestudio.waffleseminar2024.Company
+import com.wafflestudio.waffleseminar2024.Country
 import com.wafflestudio.waffleseminar2024.Genre
+import com.wafflestudio.waffleseminar2024.Language
 
 @Entity(tableName = "example_table2")
 @TypeConverters(MyConverters::class)
@@ -23,7 +26,6 @@ data class MyEntity(
     val status: String?,
     val vote_average: Double?,
     val genres: List<Genre>?,
-
     val homepage: String?,
     val original_language: String?,
     val popularity: Float?,
