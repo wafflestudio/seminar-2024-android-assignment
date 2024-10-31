@@ -16,13 +16,14 @@ import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.google.firebase.crashlytics.buildtools.reloc.javax.annotation.Nonnull
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-@Database(entities = [MyEntity::class, MyEntity2::class], version = 1)
+@Database(entities = [MyEntity::class, MyEntity2::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class MyDatabase : RoomDatabase() {
     abstract fun myDao(): MyDao
@@ -67,7 +68,7 @@ interface  MyDao {
 @Entity(tableName = "example_table")
 //@TypeConverters(Converters::class)
 data class MyEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey val id: Int?,
     val backdrop_path: String?,
     val genre_ids: List<Int>?,
     val original_language: String?,
@@ -80,51 +81,138 @@ data class MyEntity(
     val vote_average: Float?,
     val vote_count: Int?
 )
-
-@Entity(tableName = "example_table2")
-data class MyEntity2(
-    val backdrop_path: String?,
-    val overview: String?,
-    val original_language: String?,
-    val original_title: String?,
-    val release_date: String?,
-    val popularity: Float?,
-    val vote_average: Float?,
-    @PrimaryKey val id: Int,
-    val budget: Int?,
-    val genres: List<Genre>?,
-    val homepage: String?,
-    val original_country: List<String>?,
-    val title: String?,
-    val poster_path: String?,
-    val production_companies: List<ProductionCompany>?,
-    val production_countries: List<ProductionCountry>?,
-    val revenue: Int?,
-    val runtime: Int?,
-    val spoken_languages: List<SpokenLanguage>?,
-    val status: String?,
-    val tagline: String?,
-    val vote_count: Int?
-)
-
-data class ProductionCompany(
+data class Company(
     val id: Int,
-    val logo_path: String?,
+    val logoPath: String?,
     val name: String,
     val origin_country: String
 )
 
-data class ProductionCountry(
+data class Country(
     val iso_3166_1: String,
     val name: String
 )
 
-data class SpokenLanguage(
+data class Language(
     val english_name: String,
     val iso_639_1: String,
     val name: String
 )
 
+@Entity(tableName = "example_table2")
+@TypeConverters(Converters2::class)
+data class MyEntity2(
+    @PrimaryKey val id: Int?,
+    val title: String?,
+    val original_title: String?,
+    val backdrop_path: String?,
+    val budget: Int?,
+    val overview: String?,
+    val poster_path: String?,
+    val release_date: String?,
+    val revenue: Int?,
+    val runtime: Int?,
+    val status: String?,
+    val vote_average: Double?,
+    val genres: List<Genre>?,
+    val homepage: String?,
+    val original_language: String?,
+    val popularity: Float?,
+    val production_companies: List<Company>?,
+    val production_countries: List<Country>?,
+    val spoken_languages: List<Language>?,
+    val tagline: String?,
+    val vote_count: Int?
+)
+
+class Converters2 {
+    private val gson = Gson()
+
+    @TypeConverter
+    fun fromListGenre(value: List<Genre>?): String {
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun toListGenre(value: String): List<Genre> {
+        val jsonFormValue = value
+            .replace("Genre", "")
+            .replace("id", "\"id\"")
+            .replace("name", "\"name\"")
+            .replace("(", "{")
+            .replace(")", "}")
+            .replace("=", ":")
+            .replace(" ","")
+        val listType = object : TypeToken<List<Genre>>() {}.type
+        return gson.fromJson(jsonFormValue, listType)
+    }
+
+    @TypeConverter
+    fun fromListCompany(value: List<Company>?): String {
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun toListCompany(value: String): List<Company> {
+        val jsonFormValue = value
+            .replace("Company", "")
+            .replace("id", "\"id\"")
+            .replace("name", "\"name\"")
+            .replace("logoPath", "\"logoPath\"")
+            .replace("originCountry", "\"originCountry\"")
+            .replace("/","")
+            .replace("(", "{")
+            .replace(")", "}")
+            .replace("=", ":")
+            .replace(" ","")
+        val listType = object : TypeToken<List<Company>>() {}.type
+        return gson.fromJson<List<Company>?>(jsonFormValue, listType).map {
+            it.copy(logoPath = "/" + it.logoPath)
+        }
+    }
+
+    @TypeConverter
+    fun fromListCountry(value: List<Country>?): String {
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun toListCountry(value: String): List<Country> {
+        val jsonFormValue = value
+            .replace("Country", "")
+            .replace("iso", "\"iso\"")
+            .replace("name", "\"name\"")
+            .replace("(", "{")
+            .replace(")", "}")
+            .replace("=", ":")
+            .replace(" ","")
+        val listType = object : TypeToken<List<Country>>() {}.type
+        return gson.fromJson(jsonFormValue, listType)
+    }
+
+    @TypeConverter
+    fun fromListLanguage(value: List<Language?>): String {
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun toListLanguage(value: String): List<Language> {
+        val jsonFormValue = value
+            .replace("Language", "")
+            .replace("iso_639_1", "\"iso_639_1\"")
+            .replace("name", "\"name\"")
+            .replace("english_name", "\"english_name\"")
+            .replace("(", "{")
+            .replace(")", "}")
+            .replace("=", ":")
+            .replace(" ","")
+        val listType = object : TypeToken<List<Language>>() {}.type
+        return gson.fromJson(jsonFormValue, listType)
+    }
+}
+
+@Entity(tableName = "example_table")
+@TypeConverters(Converters::class)
 class Converters {
     private val gson = Gson()
 
@@ -163,46 +251,6 @@ class Converters {
             gson.fromJson(data, listType)
         }
     }
-
-    @TypeConverter
-    fun fromSpokenLanguagesList(languages: List<SpokenLanguage>?): String? {
-        return if (languages == null) null else gson.toJson(languages)
-    }
-
-    @TypeConverter
-    fun toSpokenLanguagesList(data: String?): List<SpokenLanguage>? {
-        return if (data == null) null else {
-            val listType = object : TypeToken<List<SpokenLanguage>>() {}.type
-            gson.fromJson(data, listType)
-        }
-    }
-
-    @TypeConverter
-    fun fromProductionCompaniesList(companies: List<ProductionCompany>?): String? {
-        return if (companies == null) null else gson.toJson(companies)
-    }
-
-    @TypeConverter
-    fun toProductionCompaniesList(data: String?): List<ProductionCompany>? {
-        return if (data == null) null else {
-            val listType = object : TypeToken<List<ProductionCompany>>() {}.type
-            gson.fromJson(data, listType)
-        }
-    }
-
-    @TypeConverter
-    fun fromProductionCountriesList(countries: List<ProductionCountry>?): String? {
-        return if (countries == null) null else gson.toJson(countries)
-    }
-
-    @TypeConverter
-    fun toProductionCountriesList(data: String?): List<ProductionCountry>? {
-        return if (data == null) null else {
-            val listType = object : TypeToken<List<ProductionCountry>>() {}.type
-            gson.fromJson(data, listType)
-        }
-    }
-
 }
 
 

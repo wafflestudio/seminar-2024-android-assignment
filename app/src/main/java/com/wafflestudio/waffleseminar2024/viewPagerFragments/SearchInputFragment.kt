@@ -16,12 +16,13 @@ import com.wafflestudio.waffleseminar2024.RecentSearch
 import com.wafflestudio.waffleseminar2024.RecentSearchAdapter
 import com.wafflestudio.waffleseminar2024.RecentSearchDao
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
+import com.wafflestudio.waffleseminar2024.databinding.SearchInputBinding
 import kotlinx.coroutines.launch
 import java.net.URLEncoder
 
 class SearchInputFragment : Fragment() {
 
-    private var _binding: FragmentSearchBinding? = null
+    private var _binding: SearchInputBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var recentSearchDao: RecentSearchDao
@@ -33,7 +34,7 @@ class SearchInputFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         Log.d("SearchInputFragment", "onCreateView")
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = SearchInputBinding.inflate(inflater, container, false)
 
         val database = AppDatabase.getDatabase(requireContext())
         recentSearchDao = database.recentSearchDao()

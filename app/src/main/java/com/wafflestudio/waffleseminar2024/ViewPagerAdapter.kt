@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.wafflestudio.waffleseminar2024.viewPagerFragments.AppFragment
 import com.wafflestudio.waffleseminar2024.viewPagerFragments.GameFragment
+import com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchInputFragment
 import com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchOverviewFragment
 import com.wafflestudio.waffleseminar2024.viewPagerFragments.UserInformationFragment
 
@@ -22,7 +23,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val slackWork
         return when (position) {
             0 -> GameFragment()
             1 -> AppFragment()
-            2 -> SearchOverviewFragment()
+            2 -> Fragment()
             3 -> {
                 val fragment = UserInformationFragment()
                 val bundle = Bundle()

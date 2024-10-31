@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -54,9 +55,13 @@ class HomeActivity: AppCompatActivity() {
                 2->{
                     tab.text = "검색"
                     tab.setIcon(R.drawable.search)
+                    //homeBinding.navHostFragment.visibility = View.VISIBLE
+
                     tab.view.setOnClickListener {
                         homeBinding.navHostFragment.visibility = View.VISIBLE
                     }
+
+
                 }
                 else->{
                     tab.text = "프로필"

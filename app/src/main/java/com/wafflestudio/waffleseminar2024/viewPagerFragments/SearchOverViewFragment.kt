@@ -11,18 +11,19 @@ import com.wafflestudio.waffleseminar2024.GenreRecyclerViewAdapter
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
 import androidx.navigation.fragment.findNavController
 import com.wafflestudio.waffleseminar2024.R
+import com.wafflestudio.waffleseminar2024.databinding.SearchOverviewBinding
 
 
 class SearchOverviewFragment : Fragment(), OnGenreClickListener {
 
-    private var _binding: FragmentSearchBinding? = null
+    private var _binding: SearchOverviewBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = SearchOverviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 

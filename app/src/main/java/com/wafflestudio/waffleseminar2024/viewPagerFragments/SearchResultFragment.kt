@@ -17,6 +17,8 @@ import com.wafflestudio.waffleseminar2024.MyDatabase
 import com.wafflestudio.waffleseminar2024.MyEntity
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.databinding.FragmentSearchBinding
+import com.wafflestudio.waffleseminar2024.databinding.SearchResultBinding
+import com.wafflestudio.waffleseminar2024.databinding.SearchResultRecyclerviewItemBinding
 import com.wafflestudio.waffleseminar2024.searchResultRecyclerViewAdapter
 
 interface OnGenreClickListener {
@@ -25,7 +27,7 @@ interface OnGenreClickListener {
 
 class SearchResultFragment : Fragment() {
 
-    private var _binding: FragmentSearchBinding? = null
+    private var _binding: SearchResultBinding? = null
     private val binding get() = _binding!!
     //private lateinit var movieViewModel : MovieViewModel
     private
@@ -42,7 +44,7 @@ class SearchResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = SearchResultBinding.inflate(inflater, container, false)
 
         /*
         val myDao = MyDatabase.getDatabase(requireContext()).myDao()
@@ -55,9 +57,6 @@ class SearchResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.genreRecyclerView.visibility = View.GONE
-        binding.searchResultRecyclerView.visibility = View.VISIBLE
 
         searchResultRecyclerView = binding.searchResultRecyclerView
 
