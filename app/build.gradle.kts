@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("plugin.serialization") version "2.0.21"
+    id("kotlin-kapt")
 }
 
 android {
@@ -11,6 +12,9 @@ android {
     android {
         buildFeatures {
             viewBinding = true
+        }
+        compileOptions {
+            encoding = "UTF-8"
         }
     }
     defaultConfig {
@@ -48,7 +52,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.crashlytics.buildtools)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.room)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.gson)
+    //implementation(libs.androidx.room.ksp)
+    implementation(kotlin("script-runtime"))
 }

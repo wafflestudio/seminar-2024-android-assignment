@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchFragment
 import com.wafflestudio.waffleseminar2024.viewPagerFragments.AppFragment
 import com.wafflestudio.waffleseminar2024.viewPagerFragments.GameFragment
+import com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchInputFragment
+import com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchOverviewFragment
 import com.wafflestudio.waffleseminar2024.viewPagerFragments.UserInformationFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val slackWorkspaceUrl: String) : FragmentStateAdapter(fragmentActivity) {
@@ -22,7 +23,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val slackWork
         return when (position) {
             0 -> GameFragment()
             1 -> AppFragment()
-            2 -> SearchFragment()
+            2 -> Fragment()
             3 -> {
                 val fragment = UserInformationFragment()
                 val bundle = Bundle()
@@ -37,5 +38,4 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val slackWork
     override fun getItemViewType(position: Int): Int {
         return position
     }
-
 }

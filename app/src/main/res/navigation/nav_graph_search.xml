@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_search"
+    app:startDestination="@id/searchOverviewFragment">
+
+    <fragment
+        android:id="@+id/searchOverviewFragment"
+        android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchOverviewFragment"
+        android:label="Search Overview">
+        <action
+            android:id="@+id/action_searchOverview_to_searchInput"
+            app:destination="@id/searchInputFragment" />
+        <action
+            android:id="@+id/action_searchOverview_to_searchResult"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchInputFragment"
+        android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchInputFragment"
+        android:label="Search Input">
+        <action
+            android:id="@+id/action_searchInput_to_searchResult"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.SearchResultFragment"
+        android:label="Search Result">
+        <action
+            android:id="@+id/action_searchResult_to_movieDetail"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.wafflestudio.waffleseminar2024.viewPagerFragments.MovieDetailFragment"
+        android:label="Movie Detail" />
+</navigation>

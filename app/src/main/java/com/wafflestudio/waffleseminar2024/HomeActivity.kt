@@ -10,12 +10,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wafflestudio.waffleseminar2024.databinding.ActivityHomeBinding
-
 
 class HomeActivity: AppCompatActivity() {
     private lateinit var homeBinding: ActivityHomeBinding;
@@ -44,21 +45,30 @@ class HomeActivity: AppCompatActivity() {
                 0->{
                     tab.text = "게임"
                     tab.setIcon(R.drawable.game)
+                    homeBinding.navHostFragment.visibility = View.GONE
                 }
                 1->{
                     tab.text = "앱"
                     tab.setIcon(R.drawable.app)
+                    homeBinding.navHostFragment.visibility = View.GONE
                 }
                 2->{
                     tab.text = "검색"
                     tab.setIcon(R.drawable.search)
+                    //homeBinding.navHostFragment.visibility = View.VISIBLE
+
+                    tab.view.setOnClickListener {
+                        homeBinding.navHostFragment.visibility = View.VISIBLE
+                    }
+
+
                 }
                 else->{
                     tab.text = "프로필"
                     tab.setIcon(R.drawable.profile)
+                    homeBinding.navHostFragment.visibility = View.GONE
                 }
             }
         }.attach()
     }
-
 }
