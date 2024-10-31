@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 
 class searchResultRecyclerViewAdapter(
-    private val movieList: List<Movie>,
-    private val onItemClick: (Movie) -> Unit
+    private val movieList: List<MyEntity>,
+    private val onItemClick: (MyEntity) -> Unit
 ) : RecyclerView.Adapter<searchResultRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.wafflestudio.waffleseminar2024.EntityViewModel
 import com.wafflestudio.waffleseminar2024.Movie
 import com.wafflestudio.waffleseminar2024.MovieData
 import com.wafflestudio.waffleseminar2024.MyDatabase
@@ -29,29 +30,22 @@ class SearchResultFragment : Fragment() {
 
     private var _binding: SearchResultBinding? = null
     private val binding get() = _binding!!
-    //private lateinit var movieViewModel : MovieViewModel
-    private
-
-    fun onGenreClick(genreId: Int) {
-        val data: List<Movie> = genreQuery(genreId)
-        showResult(data)
-    }
-
+    private lateinit var entityViewModel: EntityViewModel
     private lateinit var searchResultRecyclerView: RecyclerView
     private var movieEntities: List<MyEntity> = emptyList()
+
+
+    fun onGenreClick(genreId: Int) {
+        val data: List<MyEntity> = entityViewModel.genreQuery(genreId)
+        showResult(data)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = SearchResultBinding.inflate(inflater, container, false)
-
-        /*
-        val myDao = MyDatabase.getDatabase(requireContext()).myDao()
-        movieViewModel = ViewModelProvider(this, MovieViewModelFactory(myDao)).get(MovieViewModel::class.java)
-
-         */
-
+        entityViewModel = ViewModelProvider(this).get(EntityViewModel::class.java)
         return binding.root
     }
 
@@ -60,68 +54,46 @@ class SearchResultFragment : Fragment() {
 
         searchResultRecyclerView = binding.searchResultRecyclerView
 
-        /*
-        movieViewModel.fetchAllEntities().observe(viewLifecycleOwner) { entities ->
-            movieEntities = entities
-            loadData()
+        entityViewModel.movieEntities.observe(viewLifecycleOwner) { entities ->
+            if (!entities.isNullOrEmpty()) {
+                loadData()
+            }
         }
-         */
 
-        loadData()
     }
 
     private fun loadData() {
         val genreId = arguments?.getInt("genreId") ?: 0
         val searchQuery = arguments?.getString("searchQuery")
-        Log.d("SearchResultFragment", "genreId: $genreId, searchQuery: $searchQuery")
 
-        val data: List<Movie> = if (genreId != 0) {
-            Log.d("SearchResultFragment", "Executing genreQuery with genreId: $genreId")
-            genreQuery(genreId)
+        val data: List<MyEntity> = if (genreId != 0) {
+            entityViewModel.genreQuery(genreId)
         } else {
-            Log.d("SearchResultFragment", "Executing titleQuery with searchQuery: $searchQuery")
-            titleQuery(searchQuery ?: "")
+            entityViewModel.titleQuery(searchQuery ?: "")
         }
 
         showResult(data)
     }
 
-    private fun showResult(data: List<Movie>) {
-        Log.d("showResult", "1")
+    private fun showResult(data: List<MyEntity>) {
         searchResultRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
-        searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data) { movie ->
-            navigateToMovieDetail(movie)
+        searchResultRecyclerView.adapter = searchResultRecyclerViewAdapter(data) { entity ->
+            navigateToMovieDetail(entity)
         }
         searchResultRecyclerView.visibility = View.VISIBLE
         binding.backButton.visibility = View.VISIBLE
     }
 
-    private fun navigateToMovieDetail(movie: Movie) {
-        Log.d("searchResultFragment", "movie id: ${movie.id}")
-        val bundle = Bundle().apply {
-            //putInt("movieId", movie.id)
-            putInt("movieId", 12)
-        }
-        findNavController().navigate(R.id.action_searchResult_to_movieDetail, bundle)
-        Log.d("searchResultFragment", "navigate success")
-    }
-
-    private fun titleQuery(titleWord: String): List<Movie>{
-        Log.d("titleQuery", "Filtering for titleWord: $titleWord")
-        val filteredMovies = MovieData.filter{ movie ->
-            movie.title.contains(titleWord, ignoreCase = true)
-        }
-        Log.d("titleQuery", "Filtered results count: ${filteredMovies.size}")
-
-        return filteredMovies
-    }
-
-    private fun genreQuery(genreId: Int): List<Movie> {
-        Log.d("genreQuery", "start")
-        return MovieData.filter { movie ->
-            movie.genre_ids.contains(genreId)
+    private fun navigateToMovieDetail(entity: MyEntity) {
+        entity.id?.let { id ->
+            val bundle = Bundle().apply {
+                putInt("movieId", id)
+            }
+            findNavController().navigate(R.id.action_searchResult_to_movieDetail, bundle)
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

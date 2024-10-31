@@ -7,39 +7,41 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="280dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#66000000" />
-
         <ImageView
             android:id="@+id/backdropImageView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="280dp"
             android:scaleType="centerCrop"
             android:src="@drawable/slack_img"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#66000000" />
+
     </FrameLayout>
 
     <ImageView
         android:id="@+id/posterImageView"
         android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         android:src="@drawable/slack_img"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toStartOf="@id/titleTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="8dp"
+        android:elevation="20dp"
         android:outlineProvider="bounds"
         android:clipToOutline="false"
         />
@@ -47,13 +49,13 @@
 
     <TextView
         android:id="@+id/titleTextView"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:text="title"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintTop_toTopOf="@id/posterImageView"
         app:layout_constraintStart_toEndOf="@id/posterImageView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,28 +66,27 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:numStars="5"
-        android:rating="0"
         android:stepSize="0.5"
-        android:layout_marginTop="10dp"
-        android:padding="0dp"
+        android:rating="0"
+        android:progressTint="@android:color/holo_orange_light"
         style="@style/Widget.AppCompat.RatingBar.Small"
         app:layout_constraintTop_toBottomOf="@id/titleTextView"
         app:layout_constraintStart_toEndOf="@id/rating"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_gravity="center" />
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        />
 
     <TextView
         android:id="@+id/rating"
         android:layout_width="100dp"
         android:layout_height="0dp"
         android:text="rating"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/titleTextView"
         app:layout_constraintStart_toStartOf="@id/titleTextView"
-        app:layout_constraintEnd_toStartOf="@id/ratingBar"
         />
 
     <androidx.recyclerview.widget.RecyclerView

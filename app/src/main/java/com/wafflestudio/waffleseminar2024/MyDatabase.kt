@@ -23,7 +23,7 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-@Database(entities = [MyEntity::class, MyEntity2::class], version = 2)
+@Database(entities = [MyEntity::class, MyEntity2::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class MyDatabase : RoomDatabase() {
     abstract fun myDao(): MyDao
@@ -39,7 +39,7 @@ abstract class MyDatabase : RoomDatabase() {
                     MyDatabase::class.java,
                     "example_database"
                 )
-                    .fallbackToDestructiveMigration()
+                    //.fallbackToDestructiveMigration()
                     .createFromAsset("database/prepopulated_db.db") // 이 부분을 추가합니다.
                     .build()
                 INSTANCE = instance
@@ -56,7 +56,7 @@ interface  MyDao {
     fun insertMyEntity(entity: MyEntity)
 
     @Query("SELECT * FROM example_table")
-    fun getAllMyEntities(): LiveData<List<MyEntity>>
+    suspend fun getAllMyEntities(): List<MyEntity>
 
     @Query("SELECT * FROM example_table WHERE id = :id")
     fun getMyEntityById(id: Int): MyEntity
@@ -66,7 +66,7 @@ interface  MyDao {
 }
 
 @Entity(tableName = "example_table")
-//@TypeConverters(Converters::class)
+@TypeConverters(Converters::class)
 data class MyEntity(
     @PrimaryKey val id: Int?,
     val backdrop_path: String?,
@@ -81,22 +81,55 @@ data class MyEntity(
     val vote_average: Float?,
     val vote_count: Int?
 )
+
+@Entity(tableName = "example_table")
+@TypeConverters(Converters::class)
+class Converters {
+    private val gson = Gson()
+
+    @TypeConverter
+    fun fromIntegerList(integers: List<Int>?): String? {
+        return if (integers == null) null else gson.toJson(integers)
+    }
+
+    @TypeConverter
+    fun toIntegerList(data: String?): List<Int>? {
+        return if (data == null) null else {
+            val listType = object : TypeToken<List<Int>>() {}.type
+            gson.fromJson(data, listType)
+        }
+    }
+
+    @TypeConverter
+    fun fromStringList(strings: List<String>?): String? {
+        return if (strings == null) null else gson.toJson(strings)
+    }
+
+    @TypeConverter
+    fun toStringList(data: String?): List<String>? {
+        return if (data == null) null else {
+            val listType = object : TypeToken<List<String>>() {}.type
+            gson.fromJson(data, listType)
+        }
+    }
+}
+
 data class Company(
-    val id: Int,
+    val id: Int?,
     val logoPath: String?,
-    val name: String,
-    val origin_country: String
+    val name: String?,
+    val origin_country: String?
 )
 
 data class Country(
-    val iso_3166_1: String,
-    val name: String
+    val iso_3166_1: String?,
+    val name: String?
 )
 
 data class Language(
-    val english_name: String,
-    val iso_639_1: String,
-    val name: String
+    val english_name: String?,
+    val iso_639_1: String?,
+    val name: String?
 )
 
 @Entity(tableName = "example_table2")
@@ -210,49 +243,6 @@ class Converters2 {
         return gson.fromJson(jsonFormValue, listType)
     }
 }
-
-@Entity(tableName = "example_table")
-@TypeConverters(Converters::class)
-class Converters {
-    private val gson = Gson()
-
-    @TypeConverter
-    fun fromGenresList(genres: List<Genre>?): String? {
-        return if (genres == null) null else gson.toJson(genres)
-    }
-
-    @TypeConverter
-    fun toGenresList(genres: String?): List<Genre>? {
-        return genres?.let { Json.decodeFromString(it) }
-    }
-
-    @TypeConverter
-    fun fromIntegerList(integers: List<Int>?): String? {
-        return if (integers == null) null else gson.toJson(integers)
-    }
-
-    @TypeConverter
-    fun toIntegerList(data: String?): List<Int>? {
-        return if (data == null) null else {
-            val listType = object : TypeToken<List<Int>>() {}.type
-            gson.fromJson(data, listType)
-        }
-    }
-
-    @TypeConverter
-    fun fromStringList(strings: List<String>?): String? {
-        return if (strings == null) null else gson.toJson(strings)
-    }
-
-    @TypeConverter
-    fun toStringList(data: String?): List<String>? {
-        return if (data == null) null else {
-            val listType = object : TypeToken<List<String>>() {}.type
-            gson.fromJson(data, listType)
-        }
-    }
-}
-
 
 /*
 class Converters {
