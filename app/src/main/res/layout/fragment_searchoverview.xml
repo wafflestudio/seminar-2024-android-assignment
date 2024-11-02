@@ -14,9 +14,11 @@
         app:layout_constraintTop_toTopOf="parent"/>
     <ImageView
         android:id="@+id/profileButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/profile"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <LinearLayout
@@ -27,6 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="15dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@drawable/search_linearlayout_background">
@@ -39,7 +42,6 @@
             android:padding="12dp"
             android:backgroundTint="?android:attr/colorAccent"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp"
             android:src="@drawable/search"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/searchEditText"/>
@@ -64,6 +66,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scrollbars="vertical"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/searchLinearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

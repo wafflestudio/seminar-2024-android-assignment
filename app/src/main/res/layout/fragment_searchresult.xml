@@ -9,6 +9,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/back"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <ImageView
@@ -16,6 +17,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/profile"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <LinearLayout
@@ -26,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="15dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@drawable/search_linearlayout_background">

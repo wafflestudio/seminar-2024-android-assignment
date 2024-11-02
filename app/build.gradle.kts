@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.adapters)
+    implementation(libs.androidx.recyclerview)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
