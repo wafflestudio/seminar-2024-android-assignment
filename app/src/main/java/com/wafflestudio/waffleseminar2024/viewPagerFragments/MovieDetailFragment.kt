@@ -16,6 +16,9 @@ import com.wafflestudio.waffleseminar2024.adapter.GenreChipAdapter
 import com.wafflestudio.waffleseminar2024.databinding.FragmentMovieDetailBinding
 import com.wafflestudio.waffleseminar2024.viewmodel.MovieViewModel
 import com.wafflestudio.waffleseminar2024.viewmodel.MovieViewModelFactory
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.Locale
 
 class MovieDetailFragment : Fragment() {
     private lateinit var navController: NavController
@@ -53,6 +56,8 @@ class MovieDetailFragment : Fragment() {
                 binding.overviewText.text = it.overview
                 binding.originaltitleText.text = it.original_title
                 binding.statusText.text = it.status
+                binding.budgetText.text = DecimalFormat("$#,###").format(it.budget)
+                binding.revenueText.text = DecimalFormat("$#,###").format(it.revenue)
             }
         }
     }
